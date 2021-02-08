@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title>form_type</title>
+  <meta charset="utf-8"/>
+ </head>
+ <body>
+	<dl>
+		<dt>html5에서 사용하는 form</dt>
+		<dd>
+			<h2>form에 대한 중요 속성들</h2>
+			<ol>
+				<li>action :  주소를 연결하기 위하여 사용 (주소줄을 이용하여 control 페이지나 db로 넘겨줌)</li>
+				<li>method : get, post</li>
+				<li>get: 주소줄에 넘어가는 정보를 보여줘도 될 때 (검색이 가능한 페이지)</li>
+				<li>post : 주소줄에 넘어가는 정보를 보여주지 않을 때 (로그인, 회원가입)</li>
+			</ol>
+		</dd>
+		<dd>
+			<h2>xhtml에서 type 사용하기</h2>
+			<ul>
+				<li>type="text"</li>
+				<li>type="password"</li>
+				<li>type="button"</li>
+				<li>type="submit" (전송)</li>
+				<li>type="reset" (다시쓰기)</li>
+				<li>type="checkbox"</li>
+			</ul>
+		</dd>
+		<dd>
+			<h2>html5에서 type사용에 대한 목적</h2>
+			<p>
+				1) type 정확한 "목적에 맞춰서 작업하기" 위하여 type 사용<br/>
+				2) html5에서는 반응형 페이지 제작이 가능함<br/>
+				반응형 페이지, 다양한 모바일 기기에 웹 페이지가 출력될 수 있도록 하는 작업<br/>
+				3) 각종 디바이스 기기들에서 키패드가 적절하게 뜨도록 만드는 역할을 담당함!<br/>
+				4) 대다수의 표준브라우저에서 사용가능<br/>
+				5) 익스플로러에서는 표준브라우저 버전이지만 적용불가능한 type이 많음!<br/>
+				중요) type은 에러가 발생 할 확률이 높음 (지원되지 않는 브라우저들의 문제)
+			</p>
+		</dd>
+	</dl>
+	<hr/>
+
+	<h2>html5에서 사용하는 type 정리</h2>
+	<hr/>
+
+	<form action="#" method="post">
+		<fieldset>
+			<legend>type별로 정리하기</legend>
+			<p>
+				<label for="search">검색: </label><input id="search" type="search" name="search"/>
+				<!-- type="search" 는 text로 대체하는 경우가 훨씬 많음-->
+			</p>
+			<p>
+				<label for="email">이메일: </label><input id="email" type="email" name="email"/>
+				<!--
+					매우중요!!!!!!!!!!!!
+						type="email"	일 경우 text로 대체하지 않음!
+						email일 경우 type은 무조건 email 사용하기
+				-->
+			</p>
+			<p>
+				<label for="url">사이트 주소: </label><input id="url" type="url" name="url"/>
+				<!--
+					type에 url을 작성하면 주소줄에 "url을 입력하세요" 라는 문구가 계속해서 
+					출력됨! 구글 같은 페이지에서는 검색할때 방해가 되기 때문에 type="text"
+					로 사용하는 경우가 훨씬 많음
+				-->
+			</p>
+			<p>
+				<label for="phone">전화번호: </label><input id="phone" type="tel" name="phone"/>
+				<!--
+					매우중요!!!!!!!!!!!!!!!!!!
+						
+						type을 phone으로 설정하면 사용하는 의미가 전혀 없음!
+						type중에 phone이 없음!
+
+						+ type을 tel로 설정해주어야 정상적으로 작동함!
+						디바이스 기기들에서 tel로 설정하면 번호(숫자) 키패드로 변환됨!
+						text로 설정하면 키패드가 변환되지 않음
+						
+						[주의 할 점]
+						어플로 다운받아서 키패들 사용 할 경우, 권한 설정이 다운받은 
+						키패드로 넘어가기 때문에 tel 뿐아니라 다른 부분의 type들도
+						영향을 받을 수 있음!
+				-->
+			</p>
+			<p>
+				<label for="number">수량: </label><input id="number" type="number" name="number" value="5"
+				min="1" max="12" step="3"/>
+				<!--
+					[type이 number일때 사용가능한 속성]
+						
+						value="숫자"	: 처음 화면에 기본으로 적용되는 숫자
+						min	: 최소 숫자값을 지정할 때 사용
+						max  : 최대 값을 지정할 때 사용
+						
+						step : 
+							+ 처음 value을 포함한 + step 값 계산
+									value 5일 경우, step 3이라면	,	5	6	7 로 출력됨
+
+							+ 다음 부터는 다음 숫자부터 + step 값 계산
+									7 다음 부터 step 3이라면	8	9	10
+				-->
+			</p>
+			<p>
+				<label for="range">범위: </label><input id="range" type="range" name="range" min="1" max="100"
+				value="10"/>
+				<!--
+					number와 마찬가지로, min, max, value 설정이 가능함!
+					범위 설정은 개인이 어느정도 범위를 사용할 것인지 지정이 가능함
+				-->
+			</p>
+			<p>
+				<label for="date">날짜: </label><input id="date" type="date" name="date"/>
+				<!--
+					중요!
+						크롬에서 적용이 가능함!
+						익스플로러에서는 적용이 불가능함!
+						+ validator에서 오류가 발생함!
+						+ 다른 브라우저에서도 기능하는지 확인하기
+				-->
+			</p>
+			<p>
+				<label for="month">월: </label><input id="month" type="month" name="month"/>
+			</p>
+			<p>
+				<label for="time">시간: </label><input id="time" type="time" name="time"/>
+			</p>
+			<p>
+				<label for="datetime-local">날짜와 시간: </label><input id="datetime-local" type="datetime-local" name="datetime-local"/>
+			</p>
+			<p>
+				<label for="week">주: </label><input id="week" type="week" name="week"/>
+			</p>
+			<p>
+				<label for="color">색상: </label><input id="color" type="color" name="color"/>
+			</p>
+		</fieldset>
+	</form>
+ </body>
+</html>

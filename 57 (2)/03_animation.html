@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title> rotate_all </title>
+  <meta charset="utf-8"/> 
+  <style>
+	*{margin:0;padding:0;}
+	h2{text-transform:uppercase;padding:20px 0 10px;text-indent:20px;}
+
+	/*
+		[1] animation VS transition
+			:transition 이벤트를 적용했을때만 중간의 과정을 부드럽게 처리하면서 출력됨!
+			:animation 이벤트가 없어도 장면이 부드럽게 출력됨!
+
+		[2] animation 기본
+
+			1)animation의 이름
+			2)animation의 재생시간 (duration)
+			3)animation의 반복횟수
+
+				1	==	1번만 반복
+				2	==	2번 반복
+				무한재생 == infinite
+
+		[3]keyframes
+
+			1)0~100%까지 범위 안의 숫자는 어떤 값이든 가능함
+				중요) 마이너스 값은 적용되기 어려움
+
+			2) 0% 50% 100% 
+				+0 ~ 100%,22%,33%,34% 모든 % 가능함!
+				+소수점 가능함, 22.555%
+				+1% 씩 100% 까지 프레임 나눌 수 있음
+		[매우중요]
+
+			keyframes는 기본상태에서 부터 0 50% 100% 순서로 
+			출력되기 때문에 진행되는 순서에 따라 최신의 형태가 된다.
+
+			기본형태 -> 0% ->50% ->100%
+
+			3)무한반복 infinite
+
+		[문제점]
+
+			시작점: 0 ~ 50% ~ 100%
+			끝나는 지점: 100% ~ ?? ~0%
+
+			:중간지점 없이 끝나기 때문에 부드럽지 않음!
+
+		[해결]
+			
+			:중간지점을 거쳐가도록 만들기!
+			:alternate
+
+		+++++++++++++++++++++++++++++++++++++++++++++++
+
+		[css3에서 처음 배운 기능]
+			
+			1)transform
+			2)transiton
+			3)border-radius
+			4)gradient
+			5)animation, keyframes
+
+			::위에 나열된 모든 요소들은 기본적으로  prefix 작업을 해주어야 제대로된 결과물을 출력받음
+
+			::현재는 gradient를 제외하고 모두 제외가능!
+
+			-webkit-animation		:사파리,크롬,오페라미니
+			-moz-animation			:파이어폭스
+			-o-animation			:오페라
+			-ms-animation			:익스플로러
+
+			@-webkit-keyframes
+			@-moz-keyframes
+			@-o-keyframes
+			@-ms-keyframes
+
+	+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+		[응용문제]
+			1)04_animation_test.html 파일 만들기
+			2)여백초기화 필수,제목 h2로 animation_test 작성
+			3)p태그 각각 2개 만들기
+
+			4)p태그의 내용은 각각ani1,ani2 작성하기
+	*/
+
+	p{width:200px;height:180px;background-color:aqua;margin-left:20px;animation:myani 5s infinite alternate;}
+
+	@keyframes myani{
+		0%{width:200px;height:180px;background-color:aqua;}
+		50%{width:300px;height:220px;background-color:darkblue;}
+		100%{width:400px;height:240px;background-color:pink;}
+	}
+
+  </style>
+ </head>
+
+ <body>
+	<h2>animation</h2>
+	<p>animation-key</p>
+
+ </body>
+</html>

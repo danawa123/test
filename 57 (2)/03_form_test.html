@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title> payment_form </title>
+  <meta charset="utf-8"/> 
+  <style>
+	*{margin:0;padding:0;}
+	li{list-style-type:none;}
+	
+	#wrap{padding-left:20px;}
+
+	h2{width:300px;height:70px;line-height:70px;}
+
+	form{width:400px;height:900px;background-color:#9FBC2F;border-radius:10px;}
+	fieldset{width:360px;padding:20px;border:none;}
+	legend{font-size:20px;}
+	input{float:right;margin-right:50px;margin-top:10px;}
+
+	#your_detalis ul{width:360px;height:180px;}
+	#your_detalis ul li{width:100%;height:40px;line-height:40px;margin-bottom:5px;background-color:#BDD06D;border-radius:5px;border:1px solid #fff;text-indent:20px;}
+
+
+	#delivery_adderess ul{width:360px;height:140px;}
+	#delivery_adderess ul li{width:100%;height:40px;line-height:40px;margin-bottom:5px;background-color:#BDD06D;border-radius:5px;border:1px solid #fff;text-indent:20px;}
+	.address{width:100%;height:100px;}
+
+	.stepcard_type{width:100%;height:100px;margin-bottom:5px;background-color:#BDD06D;border-radius:5px;border:1px solid #fff;}
+	.stepcard_type h4{width:100%;height:50px;text-align:center;}
+	.stepcard_type p{float:left;font-size:13px;}
+	
+	#card_detalis ul{width:360px;height:180px;;}
+	#card_detalis ul li{width:100%;height:40px;line-height:40px;margin-bottom:5px;background-color:#BDD06D;border-radius:5px;border:1px solid #fff;text-indent:20px;}
+
+	.submit{width:360px;height:30px;padding:0 20px;}
+	.submit input{width:80px;height:30px;margin:0 auto;}
+
+
+  </style>
+ </head>
+
+ <body>
+	<div id="wrap">
+		<h2>payment form</h2>
+		<form action="#" method="post">
+			<fieldset id="your_detalis">
+				<legend>step:your detalis</legend>
+				<ul>
+					<li>
+						<label for="label">name:</label><input id="name" type="text" name="name"pattern placeholder="first ans last name"/>
+					</li>
+					<li>
+						<label for="email">email:</label><input id="email" type="email" name="email" placeholder="ththttht@naver.com"/>
+					</li>
+					<li>
+						<label for="tel">phone:</label><input id="tel" type="tel" name="tel"placeholder="010-123-4567"/>
+					</li>
+					<li>
+						<p>
+							<label for="detalist">detalist:<label><input id="sel" type="text" name="" list="selMenu" placeholder="option select"/>
+						</p>
+						<datalist id="selMenu">
+							<option value="option1">option1</option>
+							<option value="option2">option2</option>
+							<option value="option3">option3</option>
+							<option value="option4">option4</option>
+						</datalist>
+					</li>
+				</ul>
+			</fieldset>
+			<fieldset id="delivery_adderess">
+				<legend>STEP:Delivery Adderess</legend>
+				<ul>
+					<li class="address">
+						<label for="address"></label>address<input id="address" type="text" name="address"/>
+					</li>
+					<li>
+						<label for="postcode"></label>postcode<input id="postcard" type="text" name="address" placeholder="숫자만 입력"/>
+					</li>
+					<li>
+						<label for="country">country</label><input id="country type="text" name="country"/>
+					</li>
+				</ul>
+			</fieldset>
+			<fieldset id="card_detalis">
+				<legend>STEP:card detalis</legend>
+				<div class="stepcard_type">
+					<h4 class="stepcard">stepcard type</h4>
+					<p>
+						<img src="img/visa.gif" alt="비자카드"/><a href="#" title="클릭">visa card</a>
+					</p>
+					<p>
+						<img src="img/amex.gif" alt="amex card"/><a href="#" title="클릭">amex card</a>
+					</p>
+					<p>
+						<img src="img/mastercard.gif" alt="mastercard"/><a href="#" title="클릭">mastercard card</a>
+					</p>
+				</div>
+				<ul>
+					<li>
+						<label for="cardnumber">cardnumber</label><input id="cardnumber" type="text" name="cardnumber"placeholder='"ㅡ"을 넣고 입력'/>
+					</li>
+					
+					<li>
+						<label for="company">company</label><input id="company" type="text" name="company" value="APPLE" readonly="readonly"/>
+					</li>
+					<li>
+						<label for="security_code">security code</label><input id="security_code" type="text" name="security_code"/>
+					</li>
+					<li>
+						<label for="name_on_card">Name on card</label><input id="name_on_card" type="text" name="name_on_card" placeholder="Exact name as on the card"/>
+					</li>
+				</ul>
+			</fieldset>
+			<p class="submit">
+				<input type="submit" title="전송" value="submit"/>
+			</p>
+		</form>
+	</div>
+ </body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title>form_chk</title>
+  <meta charset="utf-8"/>
+ </head>
+ <body>
+	<form action="#" method="post">
+		<fieldset>
+			<legend>유효성 검사: required="required"</legend>
+			<ol>
+				<li>필수정보 입력공간이 빈칸이 아닌지 확인하는 작업</li>
+				<li>문법에 맞는지 확인하기 (문자, 숫자, 한글, 영문인지 체크)</li>
+				<li>문법에 맞지 않거나 빈칸 일 경우, 알림창이나 경고창 띄우기</li>
+				<li>정교하게 문자열을 비교하거나 숫자를 비교할때, 자바스크립트나 제이쿼리 사용</li>
+				<li>위에 작업이 복잡하지 않을때는 html5만 가지고 충분히 해결가능함!</li>
+			</ol>
+			<ul>
+				<li>
+					<label for="name">name: </label><input id="name" type="text" name="name"/>
+					<!--
+						1) 각각의 li태그 만들기, input과 label 작성하기
+						2) password 입력공간 만들기, type 맞혀주기
+						3) phone 입력공간 만들기, type 맞혀주기
+						4) email 입력공간 만들기, type 맞혀주기
+					-->
+				</li>
+				<li>
+					<label for="userpw">password: </label><input id="userpw" type="password" name="userpw"/>
+				</li>
+				<li>
+					<label for="tel">phone: </label><input id="tel" type="tel" name="tel"/>
+				</li>
+				<li>
+					<label for="email">email: </label><input id="email" type="email" name="email"/>
+				</li>
+			</ul>
+			<p>
+				<input type="submit" title="전송" value="전송"/>
+			</p>
+		</fieldset>
+		<fieldset>
+			<legend>예시문 힌트주기</legend>
+			<p>placeholder, required 기능이 다르기 때문에 사용목적에 맞춰서 복합적으로 사용가능!</p>
+			<ul>
+				<li>
+					<label for="phone0">phone: </label>
+					<input id="phone0" type="tel" name="phone0" placeholder="010-123-4567"/>
+				</li>
+				<li>
+					<label for="search">search:</label>
+					<input id="search" type="text" name="search" placeholder="search"/>
+				</li>
+			</ul>
+		</fieldset>
+		<fieldset>
+			<legend>자동완성 기능 사용하기: autocomplete (기본상태 on, off)</legend>
+			<ol>
+				<li>현재 ol태그가 끝난 부분 아래에 ul li태그 만들기</li>
+				<li>각각의 li태그들 마다. id, phone, email 만들기, type 맞추기</li>
+				<li>phone에 해당하는 input에 유효성 검사와 예시문 작성하기</li>
+				<li>id 중복되지 않도록 주의하기</li>
+				<li>필수) 만들어진 공간에 정보를 입력하고, 전송해보기!</li>
+			</ol>
+			<dl>
+				<dt>전송 기능을 한 후 확인하기</dt>
+				<dd>
+					전송이 이루어지면 정보가 브라우저에 쌓여있기 때문에 기본적으로 
+					자동완성 기능이 활성화 된다. 보안이 필요한 부분에서는 자동 완성기능을
+					꺼두고 사용하는 것이 좋다!
+				</dd>
+				<dd>
+					post로만 모든 작업을 보호하는 것이 아니라 get과 autocomplete를<br/>
+					사용하면 또 다른 보호의 역할을 만들 수 있다. (검색은 자유롭게, 보호할 부분은 보호!)
+				</dd>
+				<dd>
+					required 필수 정보이기 때문에 흔적이 남을 확률이 높음 autocomplete와 
+					함께 사용할 수 있도록 해야 함!
+				</dd>
+				<dd>
+					required, placeholder, autocomplete 모두 속성이 다르기 때문에 사용목적에 따라
+					모두 사용가능함!
+				</dd>
+			</dl>
+			<ul>
+				<li>
+					<label for="userid">id: </label><input id="userid" type="text" name="userid"/>
+				</li>
+				<li>
+					<label for="phone1">phone: </label><input id="phone1" type="tel" name="phone1"
+					placeholder=' "─" 을 작성하고 기입'  autocomplete="off"/>
+				</li>
+				<li>
+					<label for="email1">email: </label><input id="email1" type="email" name="email1"
+					autocomplete="off"/>
+				</li>
+			</ul>
+		</fieldset>
+		<fieldset>
+			<legend>포커스 자동이동:  autofocus="autofocus"</legend>
+			<p>
+				autofocus는 가장 먼저 입력을 받아야 하는 공간이나 중요도가 높은
+				공간에서 입력받아야 할때 사용하는 기능<br/>
+				:: 제일 많이 사용되는 곳은 제일 처음 입력받는 공간에 활성화 시키는<br/>
+				경우가 많음!
+			</p>
+			<p>
+				주의) input 여러군데 있지만 다중으로 사용하기는 어려움!
+			</p>
+
+			<!--
+				ul li태그 가져오기 , 
+					name, userid, userpw, phone, email
+					+ 아이디명 중복되지 않도록 주의해서 
+					복사해서 가져오기
+			-->
+			<ul>
+				<li>
+					<label for="name3">name: </label><input id="name3" type="text" name="name3" autofocus/>
+				</li>
+				<li>
+					<label for="userid3">id: </label><input id="userid3" type="text" name="userid3"/>
+				</li>
+				<li>
+					<label for="userpw3">password: </label><input id="userpw3" type="password" name="userpw3"/>
+				</li>
+					<li>
+					<label for="phone3">phone: </label><input id="phone3" type="tel" name="phone3"
+					placeholder=' "─" 을 작성하고 기입'/>
+				</li>
+				<li>
+					<label for="email3">email: </label><input id="email3" type="email" name="email3"/>
+				</li>
+			</ul>
+		</fieldset>
+		<fieldset>
+			<legend>읽기만 가능하게 만들기 : readonly="readonly"</legend>
+			<p>
+				<label for="company">회사이름: </label>
+				<input id="company" type="text" name="company" value="apple" readonly="readonly"/>
+			</p>
+			<p>
+				<label for="price">판매가격: </label>
+				<input id="price" type="text" name="price" value="18000" readonly		
+				style="border:none; text-align:right;"/>원
+			</p>
+		</fieldset>
+		<div>
+			<h2>placeholder VS value</h2>
+			<p>
+				placeholder, 화면에서 인식하는 값이 아니라 가상의 값!<br/>
+				마우스로 클릭하면 블록이 잡히지 않고 사라짐<br/>
+				계산식 페이지를 만들기 어려움!
+			</p>
+			<p>
+				value, 화면에서 인식하는 값, 마우스로 클릭하면 블록이 잡힘!<br/>
+				인식하는 값이기 때문에 계산식 페이지를 만들때 매우 중요!
+			</p>
+			<p>
+				중요) 계산식 페이지 작성시 사용자가 지울수 없도록 보호 하는것이 가장 중요함!
+			</p>
+		</div>
+
+		<fieldset>
+			<legend>select 태그</legend>
+			<div>
+				<label for="sel">계절선택: </label>
+				<select id="sel" name="sel">
+					<option value="봄">봄</option>
+					<option value="여름">여름</option>
+					<option value="가을">가을</option>
+					<option value="겨울">겨울</option>
+				</select>
+			</div>
+		</fieldset>
+
+		<fieldset>
+			<legend>datalist</legend>
+			<p>
+				<label for="sel1">계절선택: </label>
+				<input id="sel1" type="text" name="sel1" list="selMenu"/>
+			</p>
+
+			<datalist id="selMenu">
+				<option value="봄">봄</option>
+				<option value="여름">여름</option>
+				<option value="가을">가을</option>
+				<option value="겨울">겨울</option>
+			</datalist>
+		</fieldset>
+
+		<h2>select 태그 VS datalist 태그</h2>
+		<ol>
+			<li>공통으로 option이란 태그 사용</li>
+			<li>select 태그의 경우 하단의 메뉴를 재선택 할 수 있음</li>
+			<li>datalist 의 경우 input공간에 인식이 되면 재선택이 어려움!</li>
+			<li>datalist 의 경우 화면 어디에 만들어도 input 어디서든 호출이 가능함!</li>
+			<li>select의 경우 화면 어디에 만들어도 호출하는 것이 아니라 계속해서 만들어서 사용해야 함!</li>
+			<li>datalist는 한번 만들어 놓고 어디든 재 사용가능</li>
+			<li>select 태그는 계속 만들어서 사용!</li>
+		</ol>
+
+		<fieldset>
+			<legend>pattern</legend>
+			<p>
+				<input id="btn" type="submit" title="전송버튼"/>
+			</p>
+			<p>
+				<label for="tel5">전화번호: </label>
+				<input id="tel5" type="tel" name="tel5" pattern="\d{3}-\d{3,4}-\d{4}"/>
+			</p>
+			<p>
+				<label for="email5">이메일</label><input id="email5" type="email" name="email5"/>
+			</p>
+			<p>
+				<label for="email6">멀티 이메일</label><input id="email6" type="email" name="email6" multiple="multiple"/>
+			</p>
+
+			<p>
+				multiple로 이메일을 설정할 경우<br/>
+				아이디1@naver.com, 아이디2@daum.net 과 같이 연결해서 사용해야 함! (콤마)<br/>
+				로 연결했다면 마지막 까지 연결해서 작성하고, 끝나는 부분에서는 콤마 제외하기<br/>
+
+				:: multiple이 없을 경우 ,(콤마) 연결이 불가능 함
+			</p>
+			<p>
+				<label for="file">파일첨부: </label><input id="file" type="file" name="file"/>
+			</p>
+		</fieldset>
+	</form>
+ </body>
+</html>
