@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title> background-clip </title>
+  <meta charset="utf-8"/> 
+  <style>
+	/*초기화 생략*/
+
+	div{width:90%;margin:10px 0;padding:20px;border:10px dotted #dadada;
+	background-color:#eee;background-repeat:no-repeat;}
+
+	/*
+		[중요]
+			background-image는 영역에 정해진 만큼 칠해지는 개념이기 때문에
+			속성을 연습하기에 효과적이다.
+
+			+border-box
+			+padding-box
+			+content-box
+	*/
+	/*
+	
+	
+	*/
+	.borderBox{
+	
+		background-image:url("img/image01.jpg")
+	}
+	/*
+		padding이 적용된 부분을 ,배경색상이나 이미지가 안에서 부터 표현됨!
+	*/
+
+	.paddingBox{
+		background-origin:padding-box;
+		background-image:url("img/image01.jpg");
+	}
+	/*
+		content (내용) 이 있는 부분만 배경색상이나 
+	*/
+	.contentBox{
+		background-origin:content-box;
+		background-image:url("img/image01.jpg");
+		
+	}
+
+	.overflow{width:300px;height:100px;background-color:aqua;overflow:scroll;}
+  </style>
+ </head>
+
+ <body>
+	<h2>background-origin</h2>
+	<p>속성에 따라 어느 위치에서"배경색상이나 이미지가 시작 되는지 설정 가능"</p>
+	<hr/>
+
+	<h3>background-origin:border-box</h3>
+	<div class="borderBox">border-box</div>
+	<hr/>
+
+	<h3>background-origin:padding-box</h3>
+	<div class="paddingBox">padding-box</div>
+
+	<h3>background-origin:content-box</h3>
+	<div class="contentBox">content-box</div>
+
+	<div class="overflow">
+		[background-origin 과 bakcground-clip]
+			
+			1)속성은 2개의 기능 모두 동일하게 사용가능!<br/>
+			2)표준 브라우저에서 사용이 가능함!<br/>
+
+			3)해당하는 영역만큼 직접 설계하는 
+	
+	</div>
+ </body>
+</html>

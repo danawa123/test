@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title> rotate_all </title>
+  <meta charset="utf-8"/> 
+  <style>
+	*{margin:0;padding:0;}
+	li{list-style:none;}
+	a:link,a:visited{text-decoration:none;outline:none;}
+	/*
+		[턉카룰 성ㅅㅇ헐 굥유]
+			:foccus 기능에 의해서 윤곽선이 확인됨!
+			:접근성 부분에서 매우 중요하기 때문에 지우는 것보다는
+			언제 필요하고,피곤하지 않는지 곽인하고 것이 우선되어야 함!
+
+			중요)사용자가 어디를 선택했는지 윤관ㄱ선 정확하게 알수 있기 때문에 
+			윤곽선 표현이 필요 없음!
+
+			+border:none은 적용 불가능!
+			+border:none을 적용하면 a태그에 생기는 윤곽선을 업앨 수 있음
+			 
+			 중요)윤곽선이나 나타나는 모든 태그에서 outline:noen을 사용하면 해결이 가능ㅎ마 
+	*/
+	
+	div{width:800px;margin:50px auto 0;}
+
+	div a{width:150px;height:150px;display:block;border-radius:75px;margin-right:80px;text-align:center;line-height:150px;
+	box-shadow:0 0 20px rgba(0,0,0,0.3);background-color:#fff;float:left;
+	color:#fff;text-shadow:0 0 5px rgba(0,0,0,0.7);transition:all 0.4s linear;}
+
+	/*
+		[transition 활용하기]
+		
+		1)0.4s라면 0제외 가능함, (.)이 제외되면 4초로 적용되기 때문에 주의!
+		2)background-image는 호출하는 과정을 만들 수 없기 때문에 all을 적용해도
+		장면전환이 되지 않지만 background-position의 경우엔 과정을 만들 수 ㅣ있기 때문에
+		가능하다.
+
+		bakcgrounxd-position
+		x축 ,left cneter right  ||  0 50%  70%  100%등의 과정을 만들 수 있음
+		y축, top  cneter bottom ||	0  50% 80% 
+
+
+		[css의 hover와 transition 을 사용할 경우]
+
+			css의 hover는 역할이 끝나면 돌아가려는 속성을 가지고 있음!
+			이때 transition의 효과가 가볍게 느껴질 수 있음(객체가 가볍게 느껴지거나 튕기는 느낌처럼 나오는 경우)
+
+			:빠른 delay 효과라 어느정도 해결 가능!
+			:delay의 경우, 기다렸다가 움직이게 하기 때문에 빠르게 돌아가기 보다 기다렸다가 돌아 갈 수 있도록
+			만들 수 있음!
+
+			tip)0.2s ~0.3s는 느리게 반응하는게 보이지 않지만
+			0.4s 보다 커질 경우엔 조금 느리게 반응하는게 보임!
+	*/
+
+	/*
+		[정적인 부분과 기능 부분 확인]
+
+		중요) 기능을 만들다 보면 부모보다 커지거나 영역에서 넘칠 수 있음!
+
+		정리)
+		1)정적인 페이지에서 자녀가 부모에 담겨있을 수 있도록 만들기
+		2)기능을 만들면서 넘치는 부붐은 다른 영역에 방해를 주지 않는지 확인하기
+
+	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		
+		[hover와 focus가 있는 기능 만들기]
+
+		:focus까지 기능하려면?a태그 필수!
+
+		[hover 기능 확인하기]
+			:객체에 마우스 올리면 작동되는 마우스 기능이 hover
+			매우중요)hover는 기본적으로 올렸을 때와 내렸을 때 기능을 동시에 가지고 있음!
+
+			style에서 사용하는 hover의 경우
+				:대상에 올리면 작동 하게 되고, 내렸을 때 다시 돌아가는 기능을 가지고 있음!
+
+			script에서 사용하는 hover는 올렸을 때 내렸을때를 사용자가 직접 만들어 주어야 함!
+
+		[focus 기능 확인하기]
+			
+			:객체에 focus가 가능하려면 a 태그 필수
+			:tab키를 사용하면 객체에 윤곽선이나 로고에 마우스를 올렸을때 어디를
+			지정했는지 정확하기 어려울 경우 focus 기능중 윤곽선이 잡히는 것은 매우 중요함!
+
+		[윤곽선이 필요 없는 경우]
+			:사용자가 정확하게 어떤 대상을 선택했는지 알수 있을때는 윤관선 표현이 필요없음!
+
+			+글자색상 변경
+			+글자 크기 변경
+			+밑줄 만들기
+			+배경색상 변경 그밖에 기능들에 의해서 표현될 경우
+
+
+	*/
+	/*
+		ver1:이동하면서 회전 그리고 커지게 만들기
+		
+		중요)transform의 초기값 확인하기
+
+		+translate는 이동관련 :0px 부터 이동
+		+rotate는 회전관련 : 0도 부터 회전
+		+scale은 100%부터 확대 축소
+	*/
+	.rotate1{transform:translate(0px,0px) rotate(0deg)scale(1);}
+	.rotate1:hover,.rotate1:focus{
+		transform:translate(240px,360px) rotate(360deg) scale(1.5);
+		background-image:url("img/image01.jpg");
+		background-position:center;
+		
+	}
+
+	/*
+		ver-2:이동하면서 y축 회전 그리고 커지게 만들기
+
+			:translate(0px)부터 움직이기
+			:rotate(0deg) 0도에서 부터 회전
+			:scale(1)	100% 부터 커지거나 작아지게 만들기
+	*/
+	.rotate2{transform:translatey(0px) rotatey(0deg) scale(1)}
+	.rotate2:hover, .rotate2:focus{transform:translatey(360px) rotatey(360deg) scale(1.5)
+	background-image:url("img/image02.jpg");
+		background-position:center;}
+
+	
+	/*
+		ver-3:
+
+			ver-1과 이동과 확대가 비슷함!,회전만 다르게 표현
+
+			[매우 중요]
+
+				ver-3 처럼 기능에 의해서 마이너스를 사용해야 하기 때문에
+				정적인 페이지 구성시,마이너스 값을 사용하지 않도록 해야 한다!
+
+				1)축약형 표현 방법이나 압축해서 표현하는 방법에서는 순서에 따라
+				다르게 표현되거나 출력이 되지 않을 수 있음!
+
+				::현재 페이지에선 rotate가 적용되는 순서에 따라 전혀 다른 모양으로 
+				출력가능!
+	*/
+	.rotate3{transform:rotatex(0deg) translate(0px,0px) scale(1)}
+	.rotate3:hover, .rotate3:focus{
+		transform: rotatex(360deg) translate(-240px, 360px) scale(1.5);
+		background-image:url("img/image03.jpg");
+		background-position:bottom;}
+
+
+	div:after{content:"";display:block;clear:both;}
+  </style>
+ </head>
+
+ <body>
+	<div>
+		<a href="#" title="rotate1"  class="rotate1">
+			rotate1
+		</a>
+		<a href="#" title="rotate2"  class="rotate2">
+			rotate2
+		</a>
+		<a href="#" title="rotate3"  class="rotate3">
+			rotate3
+		</a>
+	</div>
+ </body>
+</html>

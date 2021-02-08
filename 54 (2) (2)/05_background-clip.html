@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title> background-clip </title>
+  <meta charset="utf-8"/> 
+  <style>
+	/*초기화 생략*/
+
+	div{width:90%;margin:10px 0;padding:20px;border:10px dotted #dadada;
+	background-color:#eee;background-repeat:no-repeat;}
+
+	/*
+		[중요]
+			background-image는 영역에 정해진 만큼 칠해지는 개념이기 때문에
+			속성을 연습하기에 효과적이다.
+
+			+border-box
+			+padding-box
+			+content-box
+	*/
+	.borderBox{
+		background-clip:border-box;
+		background-image:url("img/image01.jpg")
+	}
+	/*
+		padding이 적용된 부분을 제외하고,배경색상이나 이미지가 안에서 부터 표현됨!
+	*/
+
+	.paddingBox{
+		background-clip:padding-box;
+		background-image:url("img/image01.jpg")
+	}
+	/*
+		content (내용) 이 있는 부분만 배경색상이나 
+	*/
+	.contentBox{
+		background-clip:content-box;
+		background-image:url("img/image01.jpg");
+		
+	}
+  </style>
+ </head>
+
+ <body>
+	<h2>background-clip</h2>
+	<p>적용되는 속성에 따라서 어느 위치에 배경색상 || 이미지가 표현되는 설정이 가능함</p>
+	<hr/>
+
+	<h3>background-clip:border-box</h3>
+	<div class="borderBox">border-box</div>
+	<hr/>
+
+	<h3>background-clip:padding-box</h3>
+	<div class="paddingBox">padding-box</div>
+
+	<h3>background-clip:content-box</h3>
+	<div class="contentBox">content-box</div>
+ </body>
+</html>

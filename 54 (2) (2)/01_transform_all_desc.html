@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title>transform_all_desc</title>
+  <meta charset="utf-8"/>
+  <style>
+		*{margin:0; padding:0;}
+		h2,h3{text-align:center; text-transform:uppercase;}
+		h2{padding-top:20px;}
+		h3{padding-bottom:20px; color:#999;}
+
+		p{width:150px; height:150px; background-color:aqua;
+		margin:20px 0; transition:transform 0.5s linear;}
+
+		/*############# translate 사용하기 ##############*/
+		/*
+			1) translate1에 마우스 올리면 x축 200px, y축 50px 이동되도록 만들기
+			2) translate2에 마우스 올리면 x축으로만 300px 이동 되도록 만들기
+			3) translate3에 마우스 올리면 y축으로만 70px 이동 되도록 만들기
+
+			:: 장면 전환이 되면서 부드럽게 움직이도록 만들기
+
+			[기능적용전 필수 요소]
+				+ 객체의 처음 위치값 초기값 중요!
+			
+			[참고사항]
+				+ 초기값을 적용했지만 움직임이 없다면 "단위" 가 없을 경우
+				움직이지 않거나 기능하지 않음!
+
+
+			:: 특징
+				다른 객체를 밀고 다니지 않음, position을 사용하기 어려운
+				부분에서 transform: translate로 해결 가능!
+
+			:: 중요(기능)
+				position:absolute의 특징은 자신이 있던 공간으로 돌아가려고 함!
+				좌표값이나 위치값을 초기화 하려고 함!
+
+				translate 자신이 있던 위치로 이동한 후 해당하는 위치값을 저장
+				할 수 있음!
+		*/
+
+		.translate1{transform:translate(0,0);}
+		.translate1:hover{transform:translate(200px, 50px); }
+
+		.translate2{transform:translatex(0);}
+		.translate2:hover{transform:translatex(300px);}
+
+		.translate3{transform:translatey(0);}
+		.translate3:hover{transform:translatey(70px);}
+
+		/*############# scale 사용하기 ##############*/
+		/*
+			1) scale1에 마우스 올리면 x축 50% , y축 50% 줄어들도록 만들기
+			2) scale2에 마우스 올리면 x축으로만 120% 커지도록 만들기
+			3) scale3에 마우스 올리면 y축으로만 60% 줄어들도록 만들기
+
+			:: 장면 전환이 되면서 부드럽게 움직이도록 만들기
+			
+			중요) scale에서는 초기값이 100% 부터 시작하기 때문에 
+			0 이 아닌 1부터 시작
+		*/
+
+		.scale1{transform:scale(1,1);}
+		.scale1:hover{transform:scale(0.5,0.5);}
+
+		.scale2{transform:scalex(1);}
+		.scale2:hover{transform:scalex(1.2);}
+
+		.scale3{transform:scaley(1);}
+		.scale3:hover{transform:scaley(0.6);}
+
+		/*############# rotate 사용하기 ##############*/
+		/*
+			1) rotate1에 마우스 올리면 시계 반대방향으로 45도 회전되도록 만들기
+			2) rotate2에 마우스 올리면 x축으로만 80도 회전되도록 만들기
+			3) rotate3에 마우스 올리면 y축으로만 120도 회전되도록 만들기
+			4) rotate4에 마우스 올리면 y축과 z축을 사용하고, 140도 회전되도록 만들기
+
+			:: 장면 전환이 되면서 부드럽게 움직이도록 만들기
+
+			중요) 각도의 경우 단위가 다르기 때문에 0이라고 지정하면 기능하지 않을 수 있음
+			각도 표현으로  0deg 표현을 해주면 기능하는데 무리가 없음!
+		*/
+
+		.rotate1{transform:rotate(0deg);}
+		.rotate1:hover{transform:rotate(-45deg);}
+
+		.rotate2{transform:rotatex(0deg);}
+		.rotate2:hover{transform:rotatex(80deg);}
+
+		.rotate3{transform:rotatey(0deg);}
+		.rotate3:hover{transform:rotatey(120deg);}
+
+		.rotate4{transform:rotate3d(0,0,0,0deg);}
+		.rotate4:hover{transform:rotate3d(0,1,1,140deg);}
+
+		/*############# skew 사용하기 ##############*/
+		/*
+			1) skew1에 마우스 올리면 x축 15도, y축 30도 기울어지도록 만들기
+			2) skew2에 마우스 올리면 x축으로만 40도 기울어지도록 만들기
+			3) skew3에 마우스 올리면 y축으로만 30도 올라가도록 만들기
+		
+			:: 장면 전환이 되면서 부드럽게 움직이도록 만들기
+
+			중요)
+				각도 부분은 px, % 처럼 자동으로 읽을 수 없기 때문에 deg 단위를
+				사용하여 표현하는 것이 효과적이다.
+
+				+ style 경우 어느정도 자동으로 읽을 수 있음
+				+ script의 경우 자동으로 읽지 않는 것들이 많음
+
+			[정 방향과 반대방향]
+
+			[정방향]
+				skew의 경우 x축이 왼쪽에서 오른쪽으로 기울어짐
+				skew의 경우 y축이 위에서 아래로 기울어짐
+
+			[반대방향]
+				skew의 경우 x축이 마이너스 일 경우, 왼쪽으로 들어가는 형태로 기울어짐
+				skew의 경우 y축이 마이너스 일 경우, 위쪽으로 올라가는 형태로 기울어짐
+		*/
+
+		.skew1{transform:skew(0deg, 0deg);}
+		.skew1:hover{transform:skew(30deg, 30deg);}
+
+		.skew2{transform:skewx(0deg);}
+		.skew2:hover{transform:skewx(60deg);}
+
+		.skew3{transform:skewy(3deg);}
+		.skew3:hover{transform:skewy(-60deg);}
+
+	/*################# transform 정리 ###################*/
+		.transform{ box-shadow:5px 5px 5px rgba(0,0,0,0.5); text-align:center; line-height:150px;
+		text-transform:uppercase; font-weight:bold; color:#fff; border-radius:20px; 
+		text-shadow:5px 5px 5px rgba(0,0,0,0.5); transform:translatex(0) scale(1); }
+
+		.transform:hover{transform:translatex(200px) scale(2); }
+
+		/*
+			box-shadow		와 text-shadow 사용방법이 동일함
+				
+				1) x축 밀리는 정도
+				2) y축 밀리는 정도
+				3) 흐림효과
+
+				4) 그림자색상
+
+				+ box-shadow는 객체에 적용
+				+ text-shadow는 글자에 적용
+		
+		*/
+  </style>
+ </head>
+ <body>
+	<h2>transform:변형할 때 사용하는 기능</h2>
+	<h3>transform은 변형시 모든 축이 객체의 가운데를 중심으로 함</h3>
+	<hr/>
+
+	<h4>이동 변형: translate(기본 단위 px)</h4>
+	<p class="translate1">이동 x and y : transform:translate(x축, y축)</p>
+	<p class="translate2">이동 x 축 : transform:translatex (x축으로 이동가능)</p>
+	<p class="translate3">이동 y 축 : transform:translatey (y축으로 이동가능)</p>
+	<hr/>
+
+	<h4>크기 변형: scale(100% == 1 , 단위없음)</h4>
+	<p class="scale1">크기변형 x and y : transform:scale( 1(x축) , 1(y축) )</p>
+	<p class="scale2">크기변형 x : transform:scalex(0.5) </p>
+	<p class="scale3">크기변형 y : transform:scaley(0.7)</p>
+	<hr/>
+
+	<h4>회전 변형: rotate(45도 == 각도(deg))</h4>
+	<p class="rotate1">회전변형 2d(평면) : transform:rotate(45deg)</p>
+	<p class="rotate2">회전변형 x축(3d) : transform:rotatex(60deg)</p>
+	<p class="rotate3">회전변형 y축(3d) : transform:rotatey(50deg)</p>
+	<p class="rotate4">회전변형 3d축 : transform:rotate3d(x축, y축, z축, 각도)</p>
+	<hr/>
+
+	<h4>기울 이기 : skew(x축 각도(deg) , y축 각도(deg) )</h4>
+	<p class="skew1">기울이기 변형:transform:skew(x축 각도, y축 각도)</p>
+	<p class="skew2">기울이기 변형 x축: transform:skewx( x축 각도)</p>
+	<p class="skew3">기울이기 변형 y축: transform:skewy( y축 각도)</p>
+	<hr/>
+
+	<h2>모든 transform은 각각 x축과 y축을 구분하여 사용할 수 있음</h2>
+	<p class="transform">transform</p>
+ </body>
+</html>
