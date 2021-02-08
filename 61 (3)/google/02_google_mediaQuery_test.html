@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title>  </title>
+  <meta charset="utf-8"/> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"/>
+  <style>
+	*{margin:0;padding:0;}
+	li{list-style-type:none;}
+	body,header, section,footer, nav, p, ul, ul li,ol, ol li,{margin:0;padding:0;}
+
+	#wrap{min-width:1025px;width:100%;}
+
+	header{width:100%;}
+	h1{width:180px;margin:20px auto;}
+	h1 img{width:100%;}
+
+
+	#container{width:100%;}
+	#video{width:1050px;height:600px;margin:0 auto;}
+	#video video{width:100%;height:100%;}
+
+	form{width:1080px;height:120px;line-height:120px;margin:0 auto;}
+	fieldset{border:none;}
+	legend{display:none;}
+	input{width:100%;height:40px;text-indent:10px;}
+ 
+	section{width:100%;}
+	ul{width:1080px;height:320px;margin:0 auto;background-color:pink;}
+	ul li{width:250px;height:140px;margin:10px;float:left;}
+	ul li a{display:block;}
+	ul li a img{width:100%;height:100%;}
+
+	#footer{width:100%;}
+	p{width:1050px;height:50px;line-height:50px;text-align:center;text-transform:uppercase;color:#ccc;margin:0 auto;}
+
+	@media all and (min-width:768px) and (max-width:1024px){
+		#video{width:768px;height:600px;margin:0 auto;}
+
+		form{width:768px;height:120px;line-height:120px;}
+		section{width:100%;}
+		ul{width:810px;height:480px;}
+		ul li{width:250px;height:140px;}
+
+		p{width:768px;height:50px;}
+	}
+
+	@media all and (min-width:320px) and (max-width:767px){
+		#video{width:540px;height:600px;margin:0 auto;}
+
+		form{width:540px;height:120px;line-height:120px;}
+
+		ul{width:540px;height:640px;}
+		ul li{width:250px;height:140px;}
+		
+		p{width:540px;height:50px;}
+
+	}
+  </style>
+ </head>
+
+ <body>
+	<div id="wrap">
+		<header id="header">
+			<h1>
+				<a href="#" title="구글 링크">
+					<img src="img/logo.png" alt="구글 로고 이미지"/>
+				</a>
+			</h1>
+		</header>
+		<div id="container">
+			<div id="video">
+				<video controls autoplay muted loop>
+					<source src="lg.mp4" type="video/mp4"/>
+				</video>
+			</div>
+			<form action="#" method="post">
+				<fieldset>
+					<legend></legend>
+					<input id="search" type="text" name="search" placeholder="Google 검색 또는 URL 입력"/> 
+				</fieldset>
+			</form>
+			<section>
+				<ul>
+					<li>
+						<a href="#" title="네이버 링크">
+							<img src="img/naver.jpg" alt="네이버 이미지"/>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="다음 링크">
+							<img src="img/daum.jpg" alt="다음 이미지"/>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="아우디 링크">
+							<img src="img/audi.jpg" alt="아우디 이미지"/>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="닌텐도 링크">
+							<img src="img/nintendo.jpg" alt="닌텐도 이미지"/>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="엘지 링크">
+							<img src="img/lg.jpg" alt="엘지 이미지"/>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="삼성 링크">
+							<img src="img/samsung.jpg" alt="삼성 이미지"/>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="쏘니 링크">
+							<img src="img/sony.jpg" alt="쏘니 이미지"/>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="w3c 링크">
+							<img src="img/w3c.jpg" alt="w3c 이미지"/>
+						</a>
+					</li>
+				</ul>
+			</section>
+		</div>
+		<footer id="footer">
+			<p>
+				google:mediaquery
+			</p>
+		</footer>
+	</div>
+ </body>
+</html>

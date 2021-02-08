@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title>media_query_web_desc</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"/>
+  <style>
+	/*############## 공통영역 (전역) ##############*/
+	/*
+		1) 전역 : 일부 영역에서만 사용하는 값이 아니라 모든 영역에 똑같은 값을 적용
+			ex) reset.css		(초기화, 모든영역에 적용)
+
+
+		2) 지역 :  해당하는 지역에서만 사용가능
+			ex) 미디어 쿼리의 범위들
+
+				1) 일반 pc
+				2) 태블릿 pc
+				3) 스마트폰 가로버전
+				4) 스마트폰 세로버전
+
+		[중요사항]
+			
+			스마트폰들이 고사양이 되면서 "태블릿 pc버전이 스마트폰 가로버전" 에 해당하는
+			경우가 많아짐!
+
+			주의) 가로버전을 만들지 않을 경우, 사양이 낮은 스마트폰에서는 가로버전이 출력되지
+			않거나 다른 결과물이 출려될 수 있음!
+
+			중요) 세로버전과 가로버전이 다르지 않고, 세로버전 하나가 가로버전과 태블릿 pc
+			버전까지 만들어 낼 수 있음!
+	*/
+
+	/*################## 초기화 ##################*/
+		*{margin:0; padding:0;}
+		li{list-style:none;}
+		body,header, section,footer, nav, p, ul, ul li,ol, ol li, h1, h2, h3, dl, dl dt, dl dd{margin:0; padding:0;}
+		header, section,footer, nav, article, aside{display:block;}
+
+	/*############### 반응형 페이지 제작 순서 ################*/
+	/*
+		1) pc버전 제작
+		2) 스마트폰 세로버전 제작
+		3) 스마트폰 가로버전 제작
+		4) 태블릿 pc 버전 제작
+
+
+		+ 현재 페이지의 작업 순서
+			1) pc버전
+			2) 태블릿 pc버전
+			3) 스마트폰 가로, 세로버전
+	
+		[반응형 페이지 제작시 중요사항]
+			
+			1) 브라우저가 줄어들면서 차지하는 너비가 달라질 수 있음!
+					+ 스크롤이 차지하는 너비
+					+ 검사창의 경우 분해 해서 사용하기 (너비와 높이가 달라질 수 있음)
+					+ 너비가 달라지기 때문에 반응형 페이지 제작시 방해가 큼
+					+ scroll값을 만들때 높이가 방해가 되서 계산을 만들기 어려움!
+
+			2) 매우중요)
+				조금씩 줄이면서 맞추는 작업이 아니라 해당하는 영역의 "최소 너비에 맞춰서 제작" 함!
+				반응형 페이지는 최소 너비에 맞춰서 제작하기 때문에 최소너비 디자인  || 최소너비 편집
+				이라 말한다.
+
+				ex) 320px ~ 480px 일 경우
+				320px에 놓고 작업함!
+
+			3) 일반 pc로 만들어진 페이지는 공통영역으로 사용
+			4) 공통영역에서 달라지는 것만 미디어 쿼리 영역에서 제작
+
+			5) 미디어 쿼리는 가장 하단에 놓고, 공통영역에서 고쳐할 부분만 가져와서 제작함!
+	*/
+	
+	#wrap{width:100%; }
+	#headerWrap{width:100%; background-color:gold;}
+	#header{width:1025px; margin:0 auto; text-align:center;}
+	h1{font-size:24px; padding:30px 0 10px;}
+	
+
+	#container{width:100%;}
+	#container h2{text-align:center; padding:30px 0 10px;}
+
+	/*############# banner 영역 #############*/
+	.banner{width:100%; }
+	
+	.banner ul{width:996px;  margin:50px auto;}
+
+	/* 이미지 크기 : 324px */
+	.banner li{width:322px; border:1px solid #ccc; margin-left:6px; float:left;}
+	.banner li img{width:100%;}
+
+	/*
+		[제품이 되는 부분은 px로 고정]
+			+ 제품의 경우 %로 작업하게 되면 전혀 다른 이미지로 출력되어 보일 수 있기
+			때문에 %보다는 pxㄹ로 고정해서 사용한다. 
+
+		[최소너비]
+			+ 1025px 사용중
+			+ 1025px 사용중 1280px을 사용한다면 최소 너비까지 줄어들기 전에 
+			x축으로 scroll이 생김
+
+			+ 최소너비에 맞추거나 최소 너비보다 작게 작업하면 x축으로 scroll이
+			생기지 않는다.
+	*/
+
+	.banner ul:after{content:""; display:block; clear:both;}
+
+
+	section{background-color:#ccc; text-align:center; padding:20px 0;}
+	footer{background-color:#333; color:#fff; text-align:center;}
+	footer address{font-style:normal;}
+
+	/*################# 미디어 쿼리 영역 ##################*/
+	@media all and (min-width:768px) and (max-width:1024px){
+		#headerWrap{background-color:red;}
+		#header{width:768px;}
+
+
+		/*############# banner 영역 #############*/
+		/*
+			li태그가 2개 배치되도록 ul의 너비 설정
+			현재 최소너비 768px보다 작게 쓰거나 같게 사용하기
+
+			+ 2개 배치
+
+			:: 322px + border(2px) + margin-left:6px == 330px
+			:: 330px * 2 == 660px 사용가능
+			
+			+ li의 margin-left:6px과 간격 유지를 위하여 너비 666px 사용
+		*/
+		.banner{width:100%; }
+		
+		.banner ul{width:666px;  margin:50px auto;}
+
+		/* 이미지 크기 : 324px */
+		.banner li{width:322px; border:1px solid #ccc; margin-left:6px; float:left;}
+		.banner li img{width:100%;}
+
+		.banner li:last-child{margin:10px 25% 0;}
+		/*
+			[li들 중 마지막 요소만 가운데 두기]
+
+				1) float 끊기 전에 margin:0 auto를 적용하면 적용되지 않음!
+				2) float는 서로 잡아당기기 때문에 아래에 객체가 하나가 있어도
+				영향을 받음!
+
+				3) float:none으로 해제 하고, margin:0 auto를 적용하면 
+				적용이 가능함!
+
+			[문제점]
+
+				1) 형제들은 공중에 있고, 하단의 float:none 객체는 아래로 겹쳐버림!
+				2) margin-top으로 간격을 주려면 얼마나 주어야 할지 모를정도로 
+				값을 적용해야 떨어질 수 있음!
+
+			[해결1_px 방식]
+				1) 마지막 객체에 float를 해제하지 않고 사용함
+				2) margin:0 auto가 적용되지 않음!
+
+				: margin:0 auto가 적용되지 않을때는 값을 계산해서 적용하면 
+				배치가 가능함
+
+				부모인 ul의 크기는 666px
+				li한칸의 크기는 324px
+
+				666px - 324px == 342px
+				342px / 2	== 171px
+
+
+			[해결2_% 방식]
+				1) 위에 2개가 배치되어 있음
+				아래는 하나가 배치되어 있음!
+
+				아래 하나가 있기 때문에 하나의 객체를 50%로 인지함!
+
+				
+				2) 부모의 공간을 100%로 보고 하나의 객체를 50%로
+				만듬!
+
+				3) 남아있는 공간 50% 중 , 25%씩 나누어서 해결!
+		*/
+	}
+
+	
+	/*########## 스마트폰 세로와 가로버전 ##########*/
+	@media all and (min-width:320px) and (max-width:767px){
+
+		#header{width:320px;}
+		h1{font-size:20px;}
+
+
+		/*############# banner 영역 #############*/
+		.banner{width:100%; }
+		.banner ul{width:320px;}
+		.banner li{width:318px; margin-left:0; float:none;}
+	
+		section{display:none;}
+	
+	}
+
+  </style>
+ </head>
+ <body>
+	<div id="wrap">
+		<div id="headerWrap">
+			<header id="header">
+				<h1>로고, 기업의 대표이미지</h1>
+				<nav id="gnb">
+					<ul>
+						<li>로그인</li>
+						<li>회원가입</li>
+						<li>sns</li>
+					</ul>
+				</nav>
+			</header>
+		</div>
+		<div id="container">
+			<h2>banner영역_풀이</h2>
+			<div class="banner">
+				<ul>
+					<li>
+						<a href="#" title="이미지1">
+							<img src="img/banner01.jpg" alt="베너이미지1"/>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="이미지2">
+							<img src="img/banner02.jpg" alt="베너이미지2"/>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="이미지3">
+							<img src="img/banner03.jpg" alt="베너이미지3"/>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<section>
+				<h2>background 정리</h2>
+				<dl>
+					<dt>background : 축약형 && 멀티형태 호출가능</dt>
+					<dd>
+						background로 호출 할 경우
+					</dd>
+					<dd>
+						장점: background 기능중에서 호출할 대상이 무엇인지 모를 경우, 호출가능 함
+					</dd>
+					<dd>
+						단점: background의 모든 기능을 한꺼번에 호출하기 때문에 매우 느려질 수 있음
+					</dd>
+				</dl>
+				<dl>
+					<dt>background의 종류</dt>
+					<dd>
+						background-color	: 배경색상 (배경이미지나 비디오 대체할 때 사용)<br/>
+						tip) 모자란 영역을 채울 때 사용하면 매우좋음
+					</dd>
+					<dd>
+						background-image : 배경이미지(영역에 칠하는 개념)<br/>
+						tip) 모자란 영역까지 칠하기 때문에 이미지가 반복되어서 보일수 있음
+					</dd>
+					<dd>
+						background-repeat : 배경이미지 반복제어<br/>
+						tip) 초기화 부분에서 반복제어를 하지 않음, 반복이 필요할 수 있음
+					</dd>
+					<dd>
+						background-position : 배경이미지 위치조정<br/>
+						tip) left, top, center, 20px, 50% 명칭 및 수치적용 가능
+					</dd>
+					<dd>
+						background-size : html5에서 사용가능 함<br/>
+						+ 표준 브라우저에서만 사용이 가능함<br/>
+						+ 익스플로러 9버전에서는 사용이 불가능할 수 있음<br/>
+						+ 익스플로러는 10버전 이상부터 사용해야 css3의 기능을 사용할 수 있음<br/>
+						+ 구형 브라우저에서는 이미지가 원래상태로 돌아가기 때문에 사용이 불편함<br/>
+						+ 영역에 맞춰서 이미지를 제작하는 것을 권장함!
+					</dd>
+					<dd>
+						background-attachment : background-image를 영역에 붙일 때 사용<br/>
+						주의) 일부 모바일 기기에서 표현되지 않음
+					</dd>
+					<dd>
+						background-origin : 속성에 따라서 시작하는 지점이 다름( 속성의 left, top에서 부터 시작됨 )
+					</dd>
+					<dd>
+						background-clip : 속성에 따라 어디까지 표현할지 적용가능!
+					</dd>
+				</dl>
+			</section>
+			<section>
+				<h2>웹을 읽는 순서_영역</h2>
+				<ol>
+					<li>body영역</li>
+					<li>style영역</li>
+					<li>javascript 영역</li>
+					<li>jQuery 영역 (javascript + query)</li>
+				</ol>
+
+				<h2>웹을 읽는 순서_속성(기본, id, class, tag)</h2>
+				<ol>
+					<li>가장 먼저 읽어주는 값은 tag</li>
+					<li>웹에서 읽어주는 속성중 빠른 순서는? id가 빠름</li>
+					<li>모든 영역에서 빠름, style 뿐 아니라 script에서도 id는 한번만 사용하기 때문에 매우 빠름!</li>
+					<li>class와 tag중에 빠른 순서는? tag가 조금더 빠름</li>
+					<li>class는 같은 이름을 여러번 사용할 수 있고, 한 객체에 여러개의 class명을 작성할 수 있음</li>
+				</ol>
+			</section>
+			<section class="desc">
+				<h2>축약형 표현방법들</h2>
+				<p>축약형 표현방법들은 빠르지 않지만 코드를 정리할때 편리함</p>
+				<ol>
+					<li>font:italic bold 12px/1.5em gulim, arial, sans-serif</li>
+					<li>font-weight의 경우 축약형 표현안에서 항상 위치가 바뀔수 있기 때문에 주의해야 한다.</li>
+					<li>font관련 축약형은 표현 방법중 가장 가볍기 때문에 많이 사용함</li>
+					<li>body영역에 제일 많이 사용하는 것이 font 축약형</li>
+				</ol>
+				<ol>
+					<li>border:1px solid red ,축약형</li>
+					<li>border-left, border-top, border-bottom, border-right , 위치값은 순서 상관없이 호출가능</li>
+					<li>margin, padding : top-right-bottom-left 시계방향 회전</li>
+				</ol>
+				<dl>
+					<dt>장면전화 : transition:width 3s linear 0.2s</dt>
+					<dd>
+						transition-property	: 속성변화
+					</dd>
+					<dd>
+						transition-duration : 장면이 전환되는 시간
+					</dd>
+					<dd>
+						transition-timing-function	: 속도표현
+					</dd>
+					<dd>
+						transition-delay	: 작동될 때 까지의 지연시간
+					</dd>
+				</dl>
+			</section>
+			<section>
+				<h2>form과 table</h2>
+				<ul>
+					<li>form은 action과 method의 속성을 가짐</li>
+					<li>action 줄을 통해서 db를 연동할 수 있음</li>
+					<li>table은 form 의 action이 없기 때문에 스스로 db나 control 페이지로 넘겨줄 수 없음</li>
+					<li>table은 주로 표 만들때 사용</li>
+					<li>fieldset은 form안에서 주제별로 묶어 줄때 사용</li>
+					<li>fieldset의 제목은 legend 작성</li>
+					<li>table의 제목은 caption태그 작성</li>
+					<li>table에서 어떻게 사용하는지 속성을 작성하는 summary가 있음</li>
+					<li>validator 확인해보면 summary 오류 발생, title로 대체가능함</li>
+				</ul>
+				<h2>선택이 되는 부분은, 필수가 아닌 선택</h2>
+				<p>
+					select태그는 option을 가지고 있는데 required를 작성하면 필수 선택이 되기
+					때문에 에러가 발생한다.
+				</p>
+				<p>
+					select태그는 사용자가 얼마든지 선택할 수 있도록 자유도를 주어야 함!
+				</p>
+				<p>
+					option 태그안에는 a태그 뿐 아니라 어떤 태그도 사용 불가능함
+				</p>
+			</section>
+		</div>
+		<hr/>
+		<footer id="footer">
+			<h2>이용약관, 카피라이터, 꼬릿말 영역</h2>
+			<address>
+				이메일, 사업자번호, 주소기입, 기업형 페이지에서 주로 사용
+			</address>
+			<p>&copy; 저작권(이름작성)</p>
+		</footer>
+	</div>
+ </body>
+</html>
