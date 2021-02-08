@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title>jQuery_selector</title>
+  <meta charset="utf-8"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+		/* 중요) 기능구현 script 영역 하나만 만들고, 문법도 하나만 만들어서 풀이가 가능함! */
+		/*
+			[script 활용하기]
+				
+				1) javascript 소스줄과 기능구현 script 소스줄 , 2개중에 가장 먼저 작성해야 하는 것은?
+					+ javascript 소스줄이 아래 있으면 위에 script는 해당하는 언어를 사용할 수 없음!
+
+				2) 웹을 읽는 순서는 위에서 부터 아래로 읽기 때문에 script도 위에서 아래로 읽는다.
+		*/
+
+		// ver-1 : jQuery의 문서가 준비가 되면 기능을 구현해 주세요.
+		jQuery(document).ready(function(){	
+			
+			/*
+				문제1: 전체를 선택하고, 글자색상 gray 변경하기
+
+				대상:						body		||		*( 전체요소 )  
+				이벤트:					css
+				이벤트 핸들러:			대상과 같음 (body), 글자색상 적용하기
+			*/
+			jQuery("*").css("color","gray");
+
+			
+			/*
+				문제2: class명이 title인 값 선택하고, 왼쪽 10px solid red 적용하기
+					
+					: border는 위쪽, 아래쪽, 왼쪽, 오른쪽 각각 적용이 가능함
+					: outline은 도형의 형태로 만들수 없을 뿐 아니라 각각의 좌표설정도 어려움
+						( 윤곽선 || 외곽선 형태로만 사용하기 )
+			
+					
+					대상:								class명이 title인 값
+					이벤트:							css ( border? , outline? )
+					이벤트 핸들러:					대상과 같음( .title ) 왼쪽 10px solid red 적용
+			*/
+
+			jQuery(".title").css("borderLeft","10px solid red");
+
+			/*
+				문제3: class명이 title인 값 선택하고, 아래쪽 선 1px solid red적용하기
+
+				대상: class명이 title인 값
+				이벤트: css
+				이벤트 핸들러 : 대상과 같음 (.title)	아래쪽 선 적용하기
+			*/
+
+			jQuery(".title").css("borderBottom","1px solid red");
+			
+
+			/*
+				문제4: class명이 title인 값 선택하고, 글자 들여쓰기 1em 적용하기
+
+				대상:		class명이 title인 값
+				이벤트:	css
+				이벤트 핸들러:	대상과 같음(.title) 글자 들여쓰기 적용하기
+			*/
+
+			jQuery(".title").css("textIndent","1em");
+
+			/*
+				문제5: idTest인 값을 선택하고, 글자색상 오렌지 색상으로 변경하기
+
+				대상: idTest (id속성의 idTest인 값)
+				이벤트: css
+				이벤트 핸들러: id속성의  idTest인 값, 글자색상 적용하기
+			*/
+
+			jQuery("#idTest").css("color","orange");
+
+			/*
+				문제6: h4태그 선택하고, 글자색상 보라색으로 변경하기
+			
+				대상: tag중에 h4인 태그
+				이벤트: css
+				이벤트 핸들러: tag중에 h4인 태그, 글자색상 적용하기
+
+				정리) style영역에서 대상을 선택하던 방법과 같음! 
+						
+						+ id는 #으로 호출가능
+						+ class는 .으로 호출가능
+						+ tag는 tag로 호출가능
+			*/
+
+			jQuery("h4").css("color","purple");
+
+
+			/*
+				문제7: h2와 span태그를 선택하고 글자색상 초록색 적용하기
+				
+				대상: h2와 span
+				이벤트: css
+				이벤트 핸들러: h2와 span태그에 글자색상 적용하기
+
+				정리) style영역에서 h2, h3, body, div, ul li{ margin:0; padding:0;}
+					적용하던 것 처럼 대상을 , (콤마)로 연결할 수 있음
+			*/
+
+			jQuery("h2, span").css("color","#0f0");
+
+			/*
+				문제8: h2, span 태그 선택하고, 글자 밑줄 만들기
+
+				대상:	h2와 span
+				이벤트:	css
+				이벤트 핸들러:	h2와 span태그에 밑줄 적용하기
+			*/
+			
+			jQuery("h2, span").css("textDecoration","underline");
+
+			/*
+				문제9: strong 태그 선택하고 배경색상 아쿠아 적용하기
+			
+				대상: strong (인라인요소)
+				이벤트: css
+				이벤트 핸들러: 대상과 같음 (strong), 배경색상 적용하기
+			*/
+
+			jQuery("strong").css("backgroundColor","aqua");
+
+
+			/*
+				문제10: strong 태그 선택하고 두께 빼주기
+
+				대상: strong
+				이벤트:css
+				이벤트 핸들러: 대상과 같음(strong), font-weight 적용하기
+			*/
+
+			jQuery("strong").css("fontWeight","400");
+
+			/*
+				문제11: em 태그 호출하여 글자 기울어지지 않도록 만들기
+
+				대상: em (인라인요소)
+				이벤트: css
+				이벤트 핸들러: 대상과 같음, font-style 적용하기
+			*/
+
+			jQuery("em").css("fontStyle","normal");
+
+			/*
+				문제12: article 영역 호출하여 배경색상 노란색 적용하기, 글자색상 파란색 적용하기
+
+				대상: article (시멘틱태그)
+				이벤트: css
+				이벤트 핸들러 : 대상과 같음 (article)
+											배경색상 노란색
+											글자색상 파란색
+			*/
+
+			jQuery("article").css("backgroundColor","#ff0");
+			/* 
+				jQuery("article").css("color","blue");
+			
+				+ 문제점: 전체영역의 *접근 하는 속성으로 인해 충돌 발생
+				+ 해결:	DOM 부분이나 탐색 선택자로 가능함!
+							대상을 body로 선택해도 해결 가능함!
+			*/
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		/*
+			문제1: ulParent의 자녀요소들에 글자색상 파란색 적용하기
+
+			대상:					ulParent (class명)
+			이벤트:				css
+			이벤트 핸들러:		ulParent li 태그들 (자녀요소)
+
+			중요)
+				ulParent 처럼 대상이 매우 중요함!
+				li들은 header, footer 어떤 영역에도 있을 수 있기 때문에
+				어디에 있는 값인지 지정하는 것이 매우 중요함!
+
+				tip) 기준의 역할을 하는 것이 대상!
+
+
+			[대상 선택하기]
+
+			1) 같은 대상을 2번 사용하게 되면, 아래값이 최신이기 때문에 아래값이 적용됨!
+			2) 일반적으로 ul li 태그를 선택하면, 아들요소 && 손자요소까지 전부 선택하게 됨!
+
+			3) 1차 적인 자녀요소 까지만 선택하기
+					ul > li , 처음에 오는 대상까지만 선택할 때 사용!
+
+
+			[중요]
+				단독으로  ul > li 처럼 사용하면 적용되지 않는 경우가 많음!
+
+			[활용하기]
+				1) 전체 대상에 색상 적용하기
+				2) 일부 대상만 변경하기
+
+
+			[올바른 적용방법]
+				1) 전체에 적용하기 : jQuery("ul li").css("color","#000");
+				2) 일부만 적용하기 : jQuery("ul > li").css("color","blue");
+
+		*/
+
+		jQuery(".ulParent li").css("color","blue");
+		jQuery(".ulParent > li").css("color","red");
+
+		/*
+			문제2: 부모요소에 속해있는 theSon을 호출하여 배경색상 노란색 적용하기
+
+			대상:					부모요소에 속해 있기 때문에 (ulParent) 이 대상
+									: 어느영역에 있는 값인지 정확하게 대상을 선택해야 함
+
+									header영역의 theSon 이 있을 수 있고, 
+									footer 영역의 theSon이 있을 수 있음
+
+			이벤트:				css
+			이벤트 핸들러:		ulParent에 속해있는 theSon
+
+			[정리]
+				ul li태그들은 전부 자녀요소들, 그 중 정확하게 자녀로 존재하는 theSon을 지정할 때
+				사용할 수 있음!	(theSon 아니어도 다른 이름 사용가능!)
+
+
+				1) 자녀요소로 존재하지 않는다면 선택하기 어려움!
+				2) div p.. p태그가 꼭 만들어지는 것이 아님!
+				3) ul li, ol li, dl dt dd 자녀요소로 변하지 않고 존재함!
+
+			[일반적인 방법]
+				
+				1) ul li
+				2) ul .theSon
+				3) .theSon
+
+				4) 대상.children 정확하게 자녀인 객체에 무언가 지정하거나 특별히 
+				기능을 부여할 때 사용하는 "특별한 방법"
+		*/
+
+		jQuery(".ulParent").children(".theSon").css("backgroundColor","#ff0");
+
+		/*
+			문제3: theSon을 기준으로 부모요소를 선택하여 border 2px solid red 적용하기
+				:: parent()
+	
+
+			대상:						theSon이 기준(대상)
+			이벤트:					css
+			이벤트 핸들러:			theSon의 부모요소, border 적용하기	
+
+
+
+			[정리]
+				형제요소들, 자녀요소들은 여러개를 만들기 때문에 부모에서 
+				확인하려면 정확하게 이름이 필요함!
+
+				자녀요소가 볼때 부모요소는 하나로 이루어져 있기 때문에
+				이름을 지정하지 않아도 크게 문제가 발생하지 않는다!
+		*/
+
+		jQuery(".theSon").parent().css("border","2px solid red");
+
+
+		/*
+			문제4: basicWrap을 기준으로 h2를 선택하고, 글자크기 25px 적용하기
+
+			대상:					basicWrap 
+			이벤트:				css
+			이벤트 핸들러:		basicWrap 에 속해 있는 h2
+
+			[정리]
+
+				1) basicWrap은 div태그 h2, h1, h3, strong, em 등등 어떤 태그로
+				제목을 작성해도 문제가 없음!
+					+ 꼭 자녀로 있어야 하는 태그가 아니라 속해있는 개념이기 때문에
+					chlidren 사용불가!
+
+				2) ul li, ol li, dl dt dd  처럼 다른 태그로 바꾸기 불가한 요소들만
+				자녀요소 성립이 가능함!
+		*/
+
+		// jQuery("#basicWrap h2").css("fontSize","25px");
+
+		/*
+			문제5: basicWrap을 기준으로 h2를 선택하고, 배경색상 핑크색상 적용하기
+
+			대상:					basicWrap
+			이벤트:				css
+			이벤트 핸들러:		basicWrap에 속해있는 h2, 배경색상 적용하기
+
+			[매우중요]
+				대상.기능1.기능2.기능3
+				"대상은 같고", 기능이 다를때 체인처럼 연결한다고 해서 "메서드 체인" 이라고 말함!
+		*/
+
+		jQuery("#basicWrap h2").css("backgroundColor","pink").css("fontSize","25px");
+		
+
+		/*
+			문제6: div에 속해있는 ul에 배경색상 ccc 글자 밑줄 만들기
+				: 메서드 체인방식으로 문제풀기
+
+				대상:
+				이벤트:
+				이벤트 핸들러:
+		*/
+
+		/*
+			문제7: no2를 기준으로 다음요소를 선택하여 글자크기 20픽셀, 글자색상 darkred 적용하기
+			
+				: next()
+
+			대상:
+			이벤트:
+			이벤트 핸들러:
+		*/
+
+		/*
+			문제8: no5를 기준으로 이전요소를 선택하여 글자 가운데 정렬, 글자 굵게 만들기, 글자 파란색 적용하기
+
+				: prev()
+
+			대상:
+			이벤트:
+			이벤트 핸들러:
+		*/
+
+		/*
+			문제9: lis를 기준으로 형제들 선택하여 글자 오른쪽 정렬, 테두리 적용, 글자색상 초록색 적용
+
+				: siblings
+
+			대상:
+			이벤트:
+			이벤트 핸들러:
+		
+		*/
+
+	});
+  </script>
+ </head>
+ <body>
+	<h3 class="title"><span>#</span>jQuery(기본요소) 선택자</h3>
+	<p id="idTest">기본(요소) 선택자 : 태그, id, class로 선택</p>
+
+	<h4>아래 문제 풀기</h4>
+	<div>
+		<p>전체를 선택하고, 글자색상 gray 변경하기</p>
+		<p>class명이 title인 값 선택하고, 왼쪽 10px dolid red 적용하기</p>
+		<p>class명이 title인 값 선택하고, 아래쪽 선 1px solid red적용하기</p>
+		<p>class명이 title인 값 선택하고, 글자 들여쓰기 1em 적용하기</p>
+		<p>tip) 대상이 같아도 기능이 다르기 때문에 각각 설정이 가능함</p>
+	</div>
+
+	<h2>아래 문제 풀기</h2>
+	<div>
+		<ol>
+			<li>idTest인 값을 선택하고, 글자색상 오렌지 색상으로 변경하기</li>
+			<li>h4태그 선택하고, 글자색상 보라색으로 변경하기</li>
+			<li>h2, span 태그 선택하고, 글자색상 초록색상 변경하기</li>
+			<li>h2, span 태그 선택하고, 글자 밑줄 만들기</li>
+			<li>strong 태그 선택하고 배경색상 아쿠아 적용하기</li>
+			<li>strong 태그 선택하고 두께 빼주기</li>
+			<li>em 태그 호출하여 글자 기울어지지 않도록 만들기</li>
+			<li>article 영역 호출하여 배경색상 노란색 적용하기, 글자색상은 파란색 적용하기</li>
+		</ol>
+	</div>
+	<div>
+		<p>
+			<strong>
+				+ script는 2개의 영역이 필요함<br/>
+				+ 모든 페이지에 javascript를 사용하기 위한 소스줄 필수<br/>
+				+ 기능이 되는 script 영역 필수<br/>
+				+ 첫번째 문법이나 두번째 문법중 선택하여 문제풀기<br/>
+				+ 대상. 이벤트. 이벤트 핸들러 먼저 작성하고, 기능 구현하기
+			</strong>
+		</p>
+		<p>
+			<em>
+				모든 공간은 0부터 시작<br/>
+				모든 숫자는	1부터 시작
+			</em>
+		</p>
+		<p>
+			<em>
+				+ 브라우저에서 읽어주는 영역의 순서<br/>
+				+ body영역<br/>
+				+ style영역<br/>
+				+ javascript 영역<br/>
+				+ javascript 영역안에 존재하는 jQuery 
+			</em>
+		</p>
+	</div>
+	<article>
+		<h3>body영역에 script 작성하는 이유?</h3>
+		<p>
+			body영역은 브라우저 활성화시 가장 빠르게 읽어들이는 영역<br/>
+			script영역을 body영역에 작성하면 어느정도 속도가 보완이 가능함<br/>
+			중요) body영역 가장 상단이나 가장 하단에 작성함
+		</p>
+		<p>
+			정리) script는 분해하여 사용하는 경우가 많음<br/>
+			body에서 소스줄만 연결해서 사용하는 경우가 많음<br/>
+			+ body영역에서는 여러가지 소스들이나 요소들이 복잡하게<br/> 
+			꼬여 있을 수 있기 때문에 head영역에서 사용하거나 script 영역을<br/>
+			분해하여 사용하는 경우도 많음!
+		</p>
+	</article>
+	<hr/>
+
+	<dl>
+		<dt>기본 요소 선택자 </dt>
+		<dd>
+			tag에 접근하기
+		</dd>
+		<dd>
+			id에 접근하기
+		</dd>
+		<dd>
+			class에 접근하기
+		</dd>
+		<dd>
+			style에서 사용했던 방법과 동일한 방법으로 jQuery에서도 선택가능!
+		</dd>
+		<dd>
+			style은 2차 과정, jQuery 4차 과정, 4차 과정이 마지막에 적용되기<br/>
+			때문에 같은 효과를 적용할 경우, jQuery 영역이 최신 영역이 될 수 있음!
+		</dd>
+	</dl>
+
+	<div id="basicWrap">
+		<h2>부모 자녀요소 선택자</h2>
+		<ul class="ulParent">
+			<li>03) ulParent의 자녀요소중 li요소
+				<ul>
+					<li>No_0의 객체(손자요소)</li>
+					<li>No_1의 객체(손자요소)</li>
+					<li>No_2의 객체(손자요소)</li>
+					<li>No_3의 객체(손자요소)</li>
+					<li>No_4의 객체(손자요소)</li>
+				</ul>
+			</li>
+			<li class="theSon">04) 자녀요소 테스트 중 입니다.</li>
+			<li>05) 선택한 요소를 기준으로 자녀요소들 선택</li>
+			<li>06) 선택한 요소를 기준으로 부모요소 선택</li>
+			<li>07) 태그명의 하위요소중 h3요소 선택</li>
+		</ul>
+
+		<h3><b>★</b>08) 형 동생 선택자</h3>
+		<ul>
+			<li>첫째</li>
+			<li class="no2">09) 현재 선택한 요소를 기준으로 형제요소 중 "다음요소" 선택</li>
+			<li>셋째</li>
+			<li>넷째</li>
+			<li class="no5">10) 현재 선택한 요소를 기준으로 형제요소 중 "이전요소" 선택</li>
+		</ul>
+
+		<h3>형제들 선택</h3>
+		<ul>
+			<li>형제1</li>
+			<li>형제2</li>
+			<li>형제3</li>
+			<li class="lis">형제4: 선택한 요소를 기준으로 형제들 선택</li>
+			<li>형제5</li>
+		</ul>
+	</div>
+ </body>
+</html>
