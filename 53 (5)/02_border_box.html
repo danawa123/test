@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title>border_box</title>
+  <meta charset="utf-8"/>
+  <style>
+		*{margin:0; padding:0;}
+		div{width:200px; height:400px; background-color:rgba(180,180,180,0);
+		margin:50px auto 0; position:relative;}
+
+		div span{display:block; width:1px; height:1px; background-color:red; position:absolute;
+		transition:all 0.7s ease-in-out;}
+		/*
+			[position 좌표설정시 중요]
+				: 공통에서 left:0; top:0
+				: 개별 작업에서 right:0; 과 bottom:0을 설정 할때 적용이 어려움!
+
+				left와 top에서 시작했기 때문에 right와 bottom으로 돌릴 수가 없음!
+				: left에서 시작했기 때문에 left값으로 간격 조절
+				: top에서 시작했기 때문에 top에서 간격 조절
+
+				특징) 아래 있는 값이 최신이어도 position만 값을 적용하기가 어려움!
+				명칭은 바꿀수가 없고, 시작한 거리에서 부터 거리값을 만들어 주어야 함!
+		*/
+
+		/*########### (span) 개별 좌표 지정 하기 ###########*/
+
+		.leftT{left:0; top:0;}
+		.rightT{right:0; top:0; transition-delay:0.7s;}
+		.rightB{right:0; bottom:0; transition-delay:1.4s;}
+		.leftB{left:0; bottom:0; transition-delay:2.1s;}
+
+
+		div:hover .leftT{width:100%;}
+		div:hover .rightT{height:100%;}
+		div:hover .rightB{width:100%;}
+		div:hover .leftB{height:100%;}
+
+		/*
+			[transition의 축약형]
+				transition:property	duration	timing-function  delay
+
+				1) transition-propery				: 속성만 작성
+				2) transition-duration				: ~~~~ 하는 동안만 작성
+				3) transition-timing-function	: 속도 표현만 작성
+				4) transition-delay					: 지연되는 속도만 작성
+
+
+			[position의 특징]
+				
+				1) 기본좌표 : left, top 
+				2) * script 에는 left와 top으로만 만들어지는 기능이 있음!
+				
+				3) left 부터		x축으로 늘어날 경우 , right 방향으로 향함
+					right부터	x축으로 늘어날 경우, left 방향으로 향함
+
+					top 부터 y축으로 늘어날 경우, bottom 방향으로 향함
+					bottom부터 y축으로 늘어날 경우, top 방향으로 향함
+						
+
+				특징) 오른쪽 에서 시작하면 왼쪽으로 돌아가려는 성질이 있음!
+					아래쪽에서 시작하면 위로 돌아가려는 성질이 있음!
+
+
+				4) position의 경우 오른쪽이나 아래쪽에 사용해도 마이너스 값
+				없이 자신의 있던 위치로 돌아가려고 함!
+					
+					: 이러한 특징을 가장 잘 가지고 있는 것은 absolute
+
+				
+				5) * 공통영역에서 left와 top을 작업하면 개별 작업시 right
+				bottom을 적용하기가 어려움!
+
+				:: position의 경우 아래값이 최신이어도 공통 영역에 영향을 받음!
+
+
+				6) 공통영역에서 바꾸기 어려울 경우, 개별 작업시 left에서 
+				부터 거리 만들기, top에서 부터 거리 만들기
+		*/
+  </style>
+ </head>
+ <body>
+	<div>
+		<span class="leftT"></span>
+		<span class="rightT"></span>
+		<span class="rightB"></span>
+		<span class="leftB"></span>
+	</div>
+ </body>
+</html>

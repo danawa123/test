@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title>video</title>
+  <meta charset="utf-8"/>
+  <style>
+		#video{width:640px; height:480px;}
+		#video video{width:100%;}
+
+		/*
+			[video 인라인요소]
+				1) img태그 작성하는 것 처럼 부모요소 설계하고, 자녀요소 맞춰주기
+				2) select태그에 option을 사용하지 않는 것 처럼, 
+					video 태그에는 source를 직접 사용하지 않음!
+
+					+ select 태그 직접 선택하고 꾸미기
+					+ video 태그 직접 선택하고 꾸미기
+		*/
+  </style>
+ </head>
+ <body>
+	<div id="video">
+		<video controls poster="img/02.jpg" autoplay muted loop>
+			<source src="apple.mp4" type="video/mp4"/>
+		</video>
+	</div>
+	<hr/>
+	<dl>
+		<dt>video 사용하기</dt>
+		<dt>:: 유튜브에서 다운받기</dt>
+		<dd>
+			1) 해당하는 동영상 클릭<br/>
+			2) 주소줄 확인 :  youtube.com / 동영상 파일명...<br/>
+			3) 다운받기 : youtubepp.com / 동영상 파일<br/> 
+			(원하는 화질에 맞춰서 다운로드 가능)
+		</dd>
+		<dd>
+			* 주의사항: 광고창들이 새창으로 열리는데 모두 꺼주기 (닫아주기)<br/>
+			현재 다운로드 받는 사이트에서 팝업창이 활성화 될때까지 광고로 열리는 창들은 모두 꺼주기
+		</dd>
+		<dt>video 활용하기</dt>
+		<dd>
+			1) 중요) video 태그에 직접 ,  너비 640px	, 높이 480px  작성<br/>
+			2) validator로 확인하면 문제점이 발생함<br/>
+			3) 복사해서 붙여넣어 보면 옆으로 나오는 것 확인가능! (video는 인라인요소)<br/>
+			4) 인라인요소들 중에 너비와 높이를 가지는 인라인요소<br/>
+			(img, select, button, input, video...)<br/><br/>
+
+			5) 4번에 나열된 태그들은 모두 속성을 가지고 있음!
+		</dd>
+		<dt>2번에 발생한 문제점 해결하기</dt>
+		<dd>
+			1) 너비와 높이를 가지는 인라인 요소들은 직접, 너비와 높이 적용이 가능함
+		</dd>
+		<dd>
+			2) style (inline, internal , external) 방식들은 단위 사용가능!
+		</dd>
+		<dd>
+			3) 직접 적용하는 너비와 높이 방식은 단위설정 불가능!
+		</dd>
+		<dd>
+			4) 단위 설정이 불가능한 이유? 브라우저 자체에 px 단위가 내장되어 있음
+		</dd>
+		<dd>
+			5) width="480pxpx", height="320pxpx" , 단위설정에 문제가 발생함
+		</dd>
+		<dd>
+			6) width="100%" , 100px%  || 100%px 읽기 때문에 문제가 발생함
+		</dd>
+		<dd>
+			7) * style영역에서 작업하는 것이 가장 효과적이다.
+		</dd>
+		
+		<dt>video는 표준 브라우저에서 사용가능한 태그</dt>
+		<dd>
+			익스플로러 9버전 부터 표준 브라우저<br/>
+			+ 9버전에서 video가 재생이 가능할 수 도 불가능 할 수 도있음<br/>
+			+ 익스플로러 10버전 부터 안전하게 사용이 가능함
+		</dd>
+		<dt>
+			video로 사용하는 확장	
+		</dt>
+		<dd>
+			mp4, ogg, webM
+		</dd>
+		<dd>
+			mp4 이외의 다른 확장자는 브라우저에서 재생하기 어려움!
+		</dd>
+		<dd>
+			사파리, 크롬, 오페라, 익스플로러(10+) , 파이어폭스 (mp4만 안전하게 사용가능!)
+		</dd>
+		<dd>
+			참고사항) 동영 파일중에 mp4로 되어 있어도, 모바일 기기에서 적용이 어려운 것이 있음<br/>
+			pc용과 모바일용이 구분되어 있을 경우엔 재생이 불가능함<br/>
+			+ 인코딩 프로그램으로 모바일 용 인코딩을 하여 해결할 수 있음
+		</dd>
+	</dl>
+	<hr/>
+	<dl>
+		<dt>video 재생하기</dt>
+		<dd>
+			* script에서 접근 할때, soruce가 아닌 video태그를 이용하는 경우가 많음!
+		</dd>
+		<dd>
+			video에 재생 부분이 없기 때문에 video 태그에 직접 controls 작성
+		</dd>
+		<dd>
+			+ video의 controls는 브라우저들 마다 위치가 다름<br/>
+			+ 사용자들은 가운데서 재생과 멈춤 기능을 이용하는 것에 익숙함<br/>
+			+ controls는 재생을 위한 필수 속성이지만 위치값이 달라서 불편할 수 있음<br/>
+			* 권장) scirpt로 직접 재생과 멈춤의 버튼을 만들고, 사용자가 원하는 위치에서<br/>
+			재생할 수 있도록 제작해 주어야 한다.<br/><br/>
+
+			정리) script 제작이 어려운 경우, controls 사용
+		</dd>
+
+		<dt>video 사용시 참고사항</dt>
+		<dd>
+			1) video의 경우 영상과 소리를 제공함
+		</dd>
+		<dd>
+			2) 소리의 경우 재생과 함께 문제를 일으킬 수 있음<br/>
+			(장애가 있거나 심약하신 분들은 사고가 발생할 수 있음)
+		</dd>
+		<dd>
+			3) 영상의 경우 초당 3~50회 이상 깜박이는 문제가 있을 경우 문제가 발생함
+		</dd>
+		<dd>
+			4) 웹 표준 규칙에 따라, 알림, 지시사항 등이 제공되어야 함!
+		</dd>
+		<dd>
+			5) 웹 표준 규칙에 따라, 수화 , 자막 제공이 되어야 함!
+		</dd>
+		<dd>
+			6) 웹 표준 규칙에 따라, 사용자가 직접 컨트롤 할 수 있어야 함( controls 제공)
+		</dd>
+	</dl>
+	
+	<hr/>
+
+	<dl>
+		<dt>autoplay 사용하기</dt>
+		<dd>
+			소리에 대한 문제로 인해 autoplay를 막음
+		</dd>
+		<dd>
+			음소거를 사용하면 autoplay  가능하게 만듬!
+		</dd>
+		<dd>
+			autoplay 사용시 muted(음소거)를 같이 사용하면 자동재상이 가능함!
+		</dd>
+		<dd>
+			autoplay와 muted 그리고 loop를 함께 사용하면 자동재생을 무한으로 사용할 수 있음!
+		</dd>
+		<dt>video 재생되지 않을대 대체하는 속성은?</dt>
+		<dd>
+			poster 작성, img 연결 하듯이 주소 연결
+		</dd>
+		<dd>
+			poster가 기능하지 못할 때? autoplay가 빠르게 진행할 때<br/>
+			autoplay가 되면서 video까지 재생되지 못할 경우
+		</dd>
+		<dd>
+			background-image나 background-color로 대체함!
+		</dd>
+		<dd>
+			정리) gif 파일이나, animation으로 대체함!
+		</dd>
+	</dl>
+
+ </body>
+</html>

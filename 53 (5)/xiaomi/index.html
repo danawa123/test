@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title>xiaomi</title>
+  <meta charset="utf-8"/>
+  <style>
+		*{margin:0; padding:0;}
+		li{list-style:none;}
+		a:link,a:visited{text-decoration:none; color:#b0b0b0;}
+		a:hover, a:focus{color:#ff6709;}
+		body{font-family:arial, sans-serif;}
+
+		#wrap{min-width:1025px; width:100%;}
+
+	/*############ headerWrap ############*/
+		#headerWrap{width:100%; position:absolute; left:0; top:0; z-index:1;}
+	
+	/*############ infoWrap ############*/
+		#infoWrap{width:100%; background-color:#212121;}
+		
+		#infoHeader{width:1280px; height:40px; line-height:40px; margin:0 auto; }
+		
+		#leftHeader, #rightHeader{width:50%; font-size:11px; 
+		text-transform:uppercase; float:left;}
+
+		#infoHeader li{display:inline-block;}
+		#infoHeader li span{color:#444; padding:0 12px 0 14px;}
+		#infoHeader li select{border:none; font-size:11px; background-color:#212121;
+		color:#b0b0b0; text-transform:uppercase;}
+
+		/*
+			[인라인요소 작업시 참고사항]
+				
+				1) a, select, input, img, button 등등 특징있는 인라인 요소들은 직접 
+				선택하지 않으면 바뀌지 않는 것들이 많이 있음!
+
+				2) 해결 방법은 직접 태그를 선택하여 적용하기
+					: 글꼴, 글자사이즈, 배경색상, 대문자/소문자 표현, 글자색상
+		*/
+
+		#rightHeader{text-align:right;}
+	
+	/*############## navWrap ##############*/
+		#navWrap{width:100%; background-color:rgba(255,255,255,0);
+		transition:background-color 0.5s linear;}
+
+		#nav{width:1280px; height:88px; margin:0 auto;}
+
+	/*############# 기능 만들기 #############*/
+	/*
+		1) navWrap 영역에 마우스 올리면 배경색상(하얀색) 변경되도록 만들기
+		2) 하얀색 배경으로 인해, 글자색상이 보이지 않음! 
+			글자색상 변경하기
+	*/
+
+		#navWrap:hover{background-color:rgba(255,255,255,1);}
+		#navWrap:hover a{color:#555;}
+		
+
+	/*############## logo , gnb ###############*/
+		/* 이미지의 크기 : 112px * 56px 타이트하게 공간 사용하기 */
+		#logo{width:56px; height:56px; margin:16px 0; overflow:hidden; float:left;}
+		#logo a{display:block; width:100%; height:100%;}
+		#logo a img{margin-left:-56px; transition:margin-left 0.3s linear;}
+
+		/*###### 로고 이동되도록 만들기 ######*/
+		#logo a:hover img{margin-left:0;}
+		
+
+
+		#gnb{width:1224px; height:88px; line-height:88px; font-size:14px; text-align:right; float:left; }
+		#gnb li{display:inline;}
+		#gnb li a{font-weight:700; color:#e2e2e2; padding-left:30px;}
+		#gnb li a:hover, #gnb li a:focus{color:#ff6709;}
+
+	/*################## container ###################*/
+		#container{width:100%; font-family:gulim, sans-serif;}
+		#visual{width:100%;}
+		#visual li{width:100%; height:770px; background-image:url("img/main2.jpg");
+		position:relative;}
+	
+		/*
+			[position 활용하기]
+			
+			1) visual 영역이 나중에 만들어지는 영역이고, position을 사용하면
+			header 영역보다 위에 나타날 수 있음!
+
+			2) header 영역이 사라지는 것처럼 되어버림!
+			
+				: header영역에 position 사용!	
+				: 순서 바꾸기 z-index를 적용하여 해결 가능함!
+		*/
+
+
+	/*############### visual / descBox ##############*/
+		#visual li .descBox{width:500px; position:absolute; left:-2000px; top:240px;
+		transition:left 0.2s linear;}
+
+		#visual li .descBox dt{font-size:55px; font-weight:400; color:#eee;}
+		
+		#visual li .descBox .dtTitle{font-size:35px; line-height:50px; 
+		color:rgba(200,200,200,0); transition:color 0.5s linear 0.5s;}
+
+		#visual li .descBox .desc{padding:20px 0 60px; color:#aaa}
+		#visual li .descBox .learnMore{width:218px; height:38px; line-height:38px;
+		border:1px solid #aaa; text-align:center;}
+
+
+		/*######## visual에 마우스 올리면 descBox 나타나도록 만들기 #######*/
+		#visual:hover li .descBox{left:400px;}
+
+		/*####### descBox 가 나타나면 dtTitle 글자 천천히 나타나도록 만들기 #######*/
+		#visual:hover li .descBox .dtTitle{color:rgba(200,200,200,1);}
+			
+
+	/*############## videoArea ###############*/
+		#videoArea{width:100%; padding-top:85px; height:500px;}
+		#videoArea h2{width:100%; height:100px; color:#616161; font-size:30px; 
+		text-align:center; font-weight:400; }
+
+		#videoArea h2:before{content:"─────────"; margin-right:30px; color:#e1e1e1;}
+		#videoArea h2:after{content:"─────────"; margin-left:30px; color:#e1e1e1;}
+
+
+		#videoArea ul{width:900px;  margin:0 auto;}
+		#videoArea li{width:295px; margin-right:7px; height:235px; overflow:hidden; float:left;}
+		#videoArea li img{width:100%; transform:scale(1);
+		transition:transform 0.3s linear;}
+
+		/*
+			중요) 이미지 크기가 모두 같지 않음, 너비와 높이를 부모요소에 맞추게 
+			되면 이미지가 눌려보이기 때문에 비율을 유지하면서 overflow:hidden
+			사용함!
+		*/
+		
+		/*########### 이미지 태그를 이용한 확대 축소 만들기 ###############*/
+		/* 확대 작업시 주의사항: 기본 이미지가 깨져 보일 수 있기 때문에 주의하기! */
+		#videoArea li:hover img{transform:scale(1.2);}
+
+
+
+		#videoArea li:last-child{margin-right:0;}
+		#videoArea ul:after{content:""; display:block; clear:both;}
+
+	/*############## subVisual ################*/
+		#subVisual{width:100%; height:400px; background-color:#000;
+		background-image:url("img/subVisual2.jpg");
+		background-attachment:fixed;}
+
+		/*
+			[background-attachment 사용하기]
+			
+				1) background-image를 해당하는 공간에 붙이기 위하여 사용하는 기능!
+				2)  * 이미지의 높이가 부족할 경우, 위 아래의 공간이 보일 수 있음!
+				3)  공간의 크기보다 이미지의 크기 (높이) 가 2~3 배 정도 커야 함!
+
+				주의사항)
+					안드로이드 기기에서 구형기기들이 적용 불가능!
+					아이폰중에서도 적용 불가능한 기기들이 있음!
+
+				[해결]
+					position:fixed를 사용하여 만들어야 함!		
+		*/
+
+	/*############# footerWrap #############*/
+		#footerWrap{width:100%; background-color:#212121; border-top:1px solid #333;}
+		#footerArea{width:1280px; margin:0 auto; padding:50px 0; border-bottom:1px solid #333;}
+
+		#footerArea dl{width:320px; float:left;}
+		#footerArea dt{font-size:14px; height:40px; color:#b0b0b0;}
+		#footerArea dd{font-size:13px; line-height:30px;}
+		#footerArea dd a{color:#999;}
+		#footerArea dd a:hover, #footerArea dd a:focus{color:#ff6709;}
+
+		#footerWrap .copy{width:100%; padding:20px 0; color:#b0b0b0; font-size:13px;}
+		#footerWrap .copy p{width:1280px; margin:0 auto;}
+		#footerWrap .copy a{color:#757575; padding-left:10px;}
+		#footerWrap .copy a:hover,#footerWrap .copy a:focus{color:#ff6709;} 
+	
+
+		#footerArea:after{content:""; display:block; clear:both;}
+	
+	/*########### 버리는 영역 ###########*/
+		h1,h3{position:absolute; left:-9999px; width:1px; height:1px; font-size:1px; line-height:0; overflow:hidden;}
+
+  </style>
+ </head>
+ <body>
+	<div id="wrap">
+		<h1>xiaomi</h1>
+		<header id="headerWrap">
+			<div id="infoWrap">
+				<div id="infoHeader">
+					<div id="leftHeader">
+						<ul>
+							<li>
+								<a href="#" title="international">international</a><span class="gray">|</span>
+							</li>
+							<li>
+								<a href="#" title="MIUI">MIUI</a><span class="gray">|</span>
+							</li>
+							<li>
+								<select id="lang" title="언어선택">
+									<option value="International" selected="selected">International</option>
+									<option value="Mainland China 简体中文">Mainland China 简体中文</option>
+									<option value="Hong Kong 繁體中文">Hong Kong 繁體中文</option>
+									<option value="Taiwan 繁體中文">Taiwan 繁體中文</option>
+									<option value="Singapore">Singapore</option>
+									<option value="Malaysia">Malaysia</option>
+									<option value="Philippines">Philippines</option>
+									<option value="Bangladesh">Bangladesh</option>
+									<option value="India">India</option>
+									<option value="Indonesia">Indonesia</option>
+								</select>
+							</li>
+						</ul>
+					</div>
+					<div id="rightHeader">
+						<ul>
+							<li>
+								<a href="#" title="Sign_in">Sign in</a><span class="gray">|</span>
+							</li>
+							<li>
+								<a href="#" title="Sign_up">Sign up</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<nav id="navWrap">
+				<div id="nav">
+					<div id="logo">
+						<a href="https://www.mi.com/global/index.html" title="샤오미 공식 홈페이지">
+							<img src="img/logo.png" alt="샤오미 로고"/>
+						</a>
+					</div>
+					<div id="gnb">
+						<ul>
+							<li>
+								<a href="#" title="Mi Phones">
+									Mi Phones
+								</a>
+							</li>
+							<li>
+								<a href="#" title="POCOPHONE">
+									POCOPHONE
+								</a>
+							</li>
+							<li>
+								<a href="#" title="Redmi Phones">
+									Redmi Phones
+								</a>
+							</li>
+							<li>
+								<a href="#" title="Mi TV">
+									Mi TV
+								</a>
+							</li>
+							<li>
+								<a href="#" title="Smart Devices">
+									Smart Devices
+								</a>
+							</li>
+							<li>
+								<a href="#" title="All Products">
+									All Products
+								</a>
+							</li>
+							<li>
+								<a href="#" title="Product Authentication">
+									Product Authentication
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<div id="container">
+			<div id="visual">
+				<h3>광고영역</h3>
+				<ul>
+					<li>
+						<div class="descBox">
+							<dl>
+								<dt>Redmi 7A</dt>
+								<dt class="dtTitle">Bigger Battery, Faster Performance</dt>
+								<dd class="desc">
+									Qualcomm® Snapdragon™ 439 processor
+									Large 4000mAh (typ) battery
+									12MP AI rear camera
+								</dd>
+								<dd class="learnMore">
+									<a href="#" title="learnMore">
+										Learn more
+									</a>
+								</dd>
+							</dl>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<section id="videoArea">
+				<h2>video</h2>
+				<ul>
+					<li>
+						<a href="#" title="비디오 링크0">
+							<img src="img/sub0.jpg" alt="비디오 이미지0"/>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="비디오 링크1">
+							<img src="img/sub1.jpg" alt="비디오 이미지1"/>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="비디오 링크2">
+							<img src="img/sub2.jpg" alt="비디오 이미지2"/>
+						</a>
+					</li>
+				</ul>
+			</section>
+
+			<section id="subVisual">
+				<h3>광고영역</h3>
+			</section>
+		</div>
+		<footer id="footerWrap">
+			<div id="footerArea">
+				<dl>
+					<dt>LEARN MORE</dt>
+					<dd>
+						<a href="#" title="Mi 10T Pro">
+							Mi 10T Pro
+						</a>
+					</dd>
+					<dd>
+						<a href="#" title="Redmi Note 9T">
+							Redmi Note 9T
+						</a>
+					</dd>
+					<dd>
+						<a href="#" title="Mi 10T Lite">
+							Mi 10T Lite
+						</a>
+					</dd>
+				</dl>
+				<dl>
+					<dt>SUPPORT</dt>
+					<dd>
+						<a href="#" title="Contact Us">
+							Contact Us
+						</a>
+					</dd>
+					<dd>
+						<a href="#" title="Warranty">
+							Warranty
+						</a>
+					</dd>
+					<dd>
+						<a href="#" title="User Guide">
+							User Guide
+						</a>
+					</dd>
+					<dd>
+						<a href="#" title="Scooter Safety Notice">
+							Scooter Safety Notice
+						</a>
+					</dd>
+					<dd>
+						<a href="#" title="Android Enterprise Recommended">
+							Android Enterprise Recommended
+						</a>
+					</dd>
+				</dl>
+				<dl>
+					<dt>ABOUT US</dt>
+					<dd>
+						<a href="#" title="Xiaomi">
+							Xiaomi
+						</a>
+					</dd>
+					<dd>
+						<a href="#" title="Press n Media">
+							Press &amp; Media
+						</a>
+					</dd>
+					<dd>
+						<a href="#" title="User Agreement">
+							User Agreement
+						</a>
+					</dd>
+					<dd>
+						<a href="#" title="Privacy Policy">
+							Privacy Policy
+						</a>
+					</dd>
+					<dd>
+						<a href="#" title="Xiaomi Blog">
+							Xiaomi Blog
+						</a>
+					</dd>
+					<dd>
+						<a href="#" title="Investor Relations">
+							Investor Relations
+						</a>
+					</dd>
+					<dd>
+						<a href="#" title="Integrity n Compliance">
+							Integrity &amp; Compliance
+						</a>
+					</dd>
+				</dl>
+				<dl>
+					<dt>FOLLOW MI</dt>
+					<dd>
+						<a href="#" title="Facebook">
+							Facebook
+						</a>
+					</dd>
+					<dd>
+						<a href="#" title="Youtube">
+							Youtube
+						</a>
+					</dd>
+					<dd>
+						<a href="#" title="Instagram">
+							Instagram
+						</a>
+					</dd>
+					<dd>
+						<a href="#" title="Twitter">
+							Twitter
+						</a>
+					</dd>
+					<dd>
+						<a href="#" title="More Regions">
+							More Regions
+						</a>
+					</dd>
+				</dl>
+			</div>
+			<div class="copy">
+				<p>
+					Copyright © 2010 - 2021 <a href="#" title="xiaomi">Xiaomi</a>. All Rights Reserved
+				</p>
+			</div>
+		</footer>
+	</div>
+ </body>
+</html>
