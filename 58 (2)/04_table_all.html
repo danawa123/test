@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title>table_rowspan</title>
+  <meta charset="utf-8"/>
+  <style>
+		*{margin:0; padding:0;}
+		table{width:600px;}
+		table, th, td{border:1px solid #333;}
+		td{text-align:center;}
+  </style>
+ </head>
+ <body>
+	<table title="기업별 모델, 사양, 스펙확인">
+		<caption>기업별 모델</caption>
+		<thead>
+			<tr>
+				<th>apple</th>
+				<th>samsung</th>
+				<th>lg</th>
+				<th>htc</th>
+				<th>asus</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>ipad</td>
+				<td>galaxy tab</td>
+				<td>g pad</td>
+				<td>정보없음</td>
+				<td>정보없음</td>
+			</tr>
+			<tr>
+				<td>iphone12</td>
+				<td>galaxy s21</td>
+				<td>lg wing</td>
+				<td colspan="2">모름</td>
+				<!--
+					<td>모름</td>
+				-->
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="5">copyright</td>
+				<!--
+					<td>copyright</td>
+					<td>copyright</td>
+					<td>copyright</td>
+					<td>copyright</td>
+				-->
+			</tr>
+		</tfoot>
+	</table>
+ </body>
+</html>
+<!--
+	[table 정리]
+		1) 머릿글에 따라서 가로로 정리할 것인지, 세로로 정리 할 것인지 결정됨
+		2) row (가로), col (세로)
+		3) 자신의 칸을 합쳐서 계산됨
+
+		세로 선을 합치면서 없앨 것이라면 colspan
+		가로 선을 합치면서 업앨 것이라면 rowspan
+-->

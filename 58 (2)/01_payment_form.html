@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title>payment_form</title>
+  <meta charset="utf-8"/>
+  <style>
+		*{margin:0; padding:0;}
+		body{color:#111; font-family:Georgia, "Times News Roman";}
+
+		#wrap{padding:20px;}
+		h1{font-size:28px; margin-bottom:28px;}
+
+		#payment{background-color:#9cbc2c; border-radius:5px; width:400px; padding:20px;}
+		#payment fieldset{border:none; margin-bottom:10px;}
+		#payment fieldset:last-child{margin-bottom:0;}
+
+
+		#payment fieldset fieldset legend{font-size:13px;}
+
+
+		#payment li{
+			list-style:none;
+			background-color:#b9cf6a;
+			background-color:rgba(255,255,255,0.3);
+
+			border-width:2px;
+			border-style:solid; /* dotted, dashed */
+			border-color:#e3ebc3;
+			border-radius:5px;
+			line-height:30px;
+			padding:5px 10px;
+			margin-bottom:2px;
+		}
+
+		#payment ol li ol li{float:left; border:none; background:none;}
+		
+		/*
+			[background 해제하기]
+
+				background-color, background-image, background-repeat 등등
+				background의 모든 기능을 해제할 때 속성별로 적용되지 않을때는
+				background:none을 사용한다!
+
+				+ background:none으로 해제하면 모든 값이 해제 되기 때문에
+				"속성별"로 해제하는 것을 권장함!
+		*/
+		
+
+		#payment label{display:block; width:110px; float:left;}
+		#payment input{width:205px; border-radius:3px; border:1px solid #555;}
+
+		#payment input[type="radio"]{ width:20px; float:left; margin-right:5px; margin-top:5px;}
+		#payment fieldset fieldset label{width:auto; line-height:20px; 
+		padding-left:30px; background-repeat:no-repeat; background-position:left;}
+
+		/*
+			[중요]
+				
+				{	}		: 기능괄호
+				(	)		: 조건괄호 
+				[	]		: 속성괄호
+				({	})		: 조건이 기능이 되는 괄호, 기능괄호
+
+			
+			[width:auto]
+				form이나 table 처럼 감싸고 있는 블록요소 안에서 너비를 자동으로 맞출때 사용
+				하는 기능! 
+
+				+ 적용이 안될 수 있기 때문에 px이나 %로 작업하는 것을 권장함
+		*/
+	
+		/*################# icon 가져오기 ###################*/
+		#payment label[for="visa"]{background-image:url("img/visa.gif");}
+		#payment label[for="amex"]{background-image:url("img/amex.gif");}
+		#payment label[for="mastercard"]{background-image:url("img/mastercard.gif");}
+
+		#payment textarea{width:200px; border-radius:5px;}
+		/*
+			[block을 설정하지 않아도 너비와 높이가 적용되는 인라인 요소들]
+				
+				+ input, img, video, select, button, textarea, dt
+		*/
+		
+
+		#payment fieldset:last-child{text-align:center;}
+		#payment button{background-color:#384313; color:#fff; padding:7px 25px;
+		border:none; border-radius:20px;}
+
+		#payment button:hover{background-color:green; cursor:pointer;}
+		#payment fieldset legend:before{ content:"Step: ";}
+  </style>
+ </head>
+ <body>
+	<div id="wrap">
+		<h1>Payment form</h1>
+		<form id="payment" action="#" method="POST">
+			<fieldset>
+				<legend>Your detalis</legend>
+				<ol>
+					<li>
+						<label for="username">name: </label><input id="username" type="text" name="username" placeholder="First and last name" required="required" autofocus title="8자 까지 입력"
+						maxlength="8"/>
+					</li>
+					<li>
+						<label for="email">email: </label><input id="email" type="email" name="email" required placeholder="example@domain.com"/>
+					</li>
+					<li>
+						<label for="phone">phone: </label><input id="phone" type="tel" name="phone" placeholder="010-123-4567" title="─ 을 넣고 입력" pattern="\d{3}-\d{3,4}-\d{4}"/>
+						
+						<!--
+							[문자열 표현방법]
+								
+								1) " "	 abc	" "	 : 옆과 같은 형태로 작성을 하면 더블커텐션으로 열고 닫고가 반복되면서
+								문자열이 끊어져 버림
+
+								tip) script에서는 문자열을 연결하거나 끊어서 표현해야 하는 경우들이 많이 있음!
+
+								2) "  'abc'  "	: 옆과 같은 형태로 작성을 하면 크게 더블커텐션으로 담아주고, 안에 작은
+								형태로 싱글커텐션을 사용했기 때문에 문자열이 끊어지지 않고 연결될 수 있다.
+
+								3) 담아주어야 하는 속성들이 있기 때문에 기능만들때 "매우중요" 함
+									ex)	img	src="img/background.jpg"
+
+									tip) script에서는 숫자와 문자를 구분하기 위하여 문자는 더블이나 싱글 커텐션을
+									사용함! 숫자는 계산식이 되어야 하기 때문에 담아주지 않음!
+
+								4) '	"abc"		'	: 바깥쪽을 싱글커텐션으로 시작했다면 문자열을 연결하기 위하여
+								더블 커텐션으로 안쪽 내용들 담아주기
+						-->
+					</li>
+					<li>
+						<label for="list">datalist: </label><input id="list" type="text" name="list" list="selects" required/>
+						<datalist id="selects">
+							<option value="book">book</option>
+							<option value="game">game</option>
+							<option value="music">music</option>
+						</datalist>
+					</li>
+				</ol>
+			</fieldset>
+			<fieldset>
+				<legend>Delivery Address</legend>
+				<ol>
+					<li>
+						<label for="address">address</label>
+						<textarea id="address" name="address" required rows="5"></textarea>
+						<!--
+							[textarea]
+								1) textarea는 기본적으로 글자만 작성가능한 영역 (총 255자 까지 입력가능)
+								2) textarea는 글자만 입력받기 때문에 , type 생략!
+									textarea는 button, reset, submit 등등의 버튼을 만들 수 없음!
+									input 처럼 사용하기 어려움!
+
+								3) 상세주소, 자기소개, 내용남길 때 주로 사용
+								4) row는 가로방향에 해당함, col 세로방향에 해당함
+								5) input, select, textarea 모두 label (레이블)을 요구함
+								6) label을 사용할 수 없을 경우, title로 대체함
+						-->
+					</li>
+					<li>
+						<label for="postcode">postcode: </label><input id="postcode" type="text" name="postcode" required placeholder="숫자만 입력" maxlength="5"/>
+					</li>
+					<li>
+						<label for="country">country: </label><input id="country" type="text" name="country" required/>
+					</li>
+				</ol>
+			</fieldset>
+			<fieldset>
+				<legend>card detalis</legend>
+				<ol>
+					<li>
+						<fieldset>
+							<legend>card type</legend>
+							<ol>
+								<li>
+									<label for="visa">visa</label>
+									<input id="visa" type="radio" name="cardchk"/>
+								</li>
+								<li>
+									<label for="amex">amex</label>
+									<input id="amex" type="radio" name="cardchk"/>
+								</li>
+								<li>
+									<label for="mastercard">mastercard</label>
+									<input id="mastercard" type="radio" name="cardchk"/>
+								</li>
+							</ol>
+							<!--
+								[checkbox,	radio 버튼 사용하기]
+									
+									+ checkbox의 경우,		사각형 모양
+									+ radio의 경우,				동그라미 모양
+
+									[checkbox의 경우]
+										: 중복 선택이 가능한 부분에서 사용
+										ex) 과목선택, 취미, 쇼핑
+
+									[radio의 경우]
+										: 나열된 것들 중에서 하나만 선택할 때 사용
+										ex) 성별, 결제 시스템(핸드폰, 카드, 계좌, 상품권, 포인트)
+
+								
+								[name의 중요성]
+									
+									form의 action 줄을 타고 넘어갈때 사용되는 속성은 name
+									name은 하나씩 밖에 담지 못함!
+
+									name="a"
+									name="b"
+									name="c"
+
+									a, b, c 각각의 정보를 받아서 여러개를 한꺼번에 처리 할 수 있음!
+
+									name="a"
+									name="a"
+									name="a"
+
+									name의 값이 동일하면, 하나의 정보만 넘겨줄 수 있음! 여러개의 
+									정보를 넘겨주기 어려움!
+
+									[중요]
+										중복선택, 하나만 선택할 경우 name을 활용하여 사용가능!
+							-->
+						</fieldset>
+					</li>
+					<li>
+						<label for="cardnumber">cardnumber</label>
+						<input id="cardnumber" type="text" name="cardnumber" placeholder="─ 을 넣고 입력"/>
+					</li>
+					<li>
+						<label for="company">company</label>
+						<input id="company" type="text" name="company" value="firefox" readonly/>
+					</li>
+					<li>
+						<label for="securitycode">security code</label>
+						<input id="securitycode" type="text" name="securitycode" required/>
+					</li>
+					<li>
+						<label for="namecard">namecard</label>
+						<input id="namecard" type="text" name="namecard" placeholder="Exact name as on the card" required/>
+					</li>
+				</ol>
+			</fieldset>
+			<fieldset>
+				<button type="submit">Buy it!</button>
+				<!--
+					[input과 button 참고하기]
+						
+						+ input 태그의 경우 버튼 형태 뿐 아니라 목적에 맞춰서 다른 용도로
+						사용이 가능함!
+							(text, tel, email, multiple( email 여러개 보낼 때), number, range, submit, reset, button, file)
+
+						
+						+ button 태그의 경우, 버튼의 용도로만 사용가능!
+							(submit, reset, button)
+
+
+						[중요]
+							type이 설정된 input이나 button의 경우, a태그와 사용시 href와 충돌이 발생함!
+
+							+ submit의 전송부분과 href의 주소 연결 부분에서 충돌이 심함!
+							+ reset의 경우, 새로고침의 기능으로 href의 주소 연결 부분과 충돌이 심함!
+							+ type중에 기능을 가지는 type은 항상 충돌의 우려가 있음!
+				-->
+			</fieldset>
+		</form>
+	</div>
+ </body>
+</html>

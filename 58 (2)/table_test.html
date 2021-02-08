@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title>  </title>
+  <meta charset="utf-8"/> 
+  <style>
+	*{margin:0;padding:0;}
+	li{list-style-type:none;}
+	
+	form{width:800px;height:450px;margin:0 auto;}
+	fieldset{width:100%;height:400px;margin:0 auto;border:none;}
+	legend{font-size:25px;}
+	legend span{color:blue;}
+	ol{width:100%;height:60px;line-height:60px;border-bottom:solid 1px #ccc;}
+	input{margin:0 10px;}
+
+	.name0{width:800px;height:40px;line-height:40px;border-top:solid 2px #ccc;background-color:pink;}
+	.name0 li{width:330px;height:40px;float:left;}
+	.name0 li label
+	.name0 li .name{}
+	
+	.btn{width:100%;height:100%;}
+	button{width:100px;height:30px;text-align:center;}
+
+	#text{width:820px;height:400px;margin:0 auto;background-color:pink;}
+	.text_inner{width:400px;height:100%;float:left;margin-right:10px;}
+	.text_inner .title{width:100%;height:40px;font-size:20px;background-color:gold;}
+	.text_inner .title span{color:blue;}
+	.text_inner .agree{width:100%;height:20px;text-align:right;}
+	textarea{width:390px;height:300px;overflow:scroll;float:left;}
+  </style>
+ </head>
+
+ <body>
+	<div id="wrap">
+		<h2>회원양식</h2>
+		<form>
+			<fieldset>
+				<legend><span>기본정보</span>입력</legend>
+				<ol class="name0">
+					<li class="">
+						<label for="name">이름</label><input class="name"id="name" type="text" name="name" placeholder="한글 이름 입력" />
+					</li>
+					<li>
+						<label for="sex">남자</label><input id="sex" type="radio" name="sex" placeholder="한글 이름 입력" />
+						<label for="sex">여자</label><input id="sex" type="radio" name="sex" placeholder="한글 이름 입력" />
+						<label for="number">나이</label><input id="number" type="number" name="number" min="1"max="50"step="1" />세
+					</li>
+				</ol>
+				<ol>
+					<li>
+						<label for="userid">아이디</label><input id="userid" type="id" name="userid"/> <span>※영문자,소문자 입력가능,최대 10자까지 입력</span>
+					</li>
+				</ol>
+				<ol>
+					<li>
+						<label for="userpw">비밀번호</label><input id="userpw" type="password" name="userpw"/><span>※비밀번호는 총 8자 까지 입력가능</span>
+					</li>
+				</ol>
+				<ol>
+					<li>
+						<label for="userpw">비밀번호 확인</label><input id="userpw" type="password" name="userpw"/>
+					</li>
+				</ol>
+				<ol class="email">
+					<li>
+						<label for="email">이메일</label><input id="email" type="email" name="email"/>@<input id="email" type="email" name="email"/>
+						<select id="sel" name="sel">
+							<option value="">직접입력</option>
+							<option value="">hanmail.net</option>
+							<option value="">naver.com</option>
+							<option value="">gmail.com</option>
+						</select>
+						<input id="" type="checkbox" name="">예약 및 상단관련 메일을 받습니다.
+					</li>
+				</ol>
+				<ol>
+					<li>
+						<label for="phone">휴대폰 번호</label>
+						<select id="sel" name="sel">
+							<option value="010">010</option>
+							<option value="011">011</option>
+							<option value="031">031</option>
+							<option value="02">02</option>
+						</select>
+						-<input id="" type="" name=""/>-<input id="" type="" name=""/>
+					</li>
+				</ol>
+			</fieldset>
+			<fieldset class="btn">
+				<button type="submit">등록하기</button><button type="reset">다시쓰기</button>
+			</fieldset>		
+		</form>
+		<div id="text">
+			<div class="text_inner">
+				<p class="title"><span>이용</span> 약관</p>
+				<p class="agree">
+					<input id="chk" name="chk" type="checkbox"/>아래 사항에 동의 합니다.
+				</p>
+				<textarea name="textarea" rows="10" cols="50"></textarea>
+			</div>
+			<div class="text_inner">
+				<p class="title"><span>개인정보</span>취급방침</p>
+				<p class="agree">
+					<input id="chk" name="chk" type="checkbox"/>아래 사항에 동의 합니다.
+				</p>
+				<textarea name="textarea" rows="10" cols="50"></textarea>
+			</div>
+		</div>
+	</div>
+ </body>
+</html>
