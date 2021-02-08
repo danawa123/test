@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title>animation_frontend</title>
+  <meta charset="utf-8"/>
+  <style>
+		*{margin:0; padding:0;}
+
+		ul{width:800px; height:400px; margin:100px auto 0; overflow:hidden; position:relative;}
+		ul li{list-style:none; width:100px; height:50px; text-align:center;
+		line-height:50px; font-size:30px; /*float:left;*/ position:absolute; left:0; top:0;}
+		
+		/*
+			[css에서 마이너스 되는 부분]
+				
+				1) xhtml 기준으로 웹접근성, 웹표준에 대한 검수과정이 필수 (웹 점검도구, 100점)
+				2) html5, body영역에 대한 검수 과정 필수!  and		style 영역도 검수 과정을 진행함
+				3) body영역에서 검수하는 것들
+						태그, 대체텍스트, strong, em, 들여쓰기.....
+
+				4) style영역에서 검수하는 것들
+						float와 position 사용시 좌표 이동에 대한 부분을 중요하게 검사함!
+
+
+					정리)
+						+ position:relative 처럼, 기준점 역할만 하고 움직이지 않는다면 사용가능!
+						position:absolut처럼 left, top을 사용할 경우에는 float는 무너지기 때문에
+						문제가 발생함 , css에서 유일하게 감점이 큰 부분!
+
+						+ 가상의 객체는 직접 클릭이나 이벤트를 발생시킬수 없기 때문에 
+						태그사용을 권장함!
+		*/
+
+		.f{left:0;			animation:aniText 1s 1;}
+		.r{left:100px; animation:aniText 1.5s 1;}
+		.o{left:200px; animation:aniText 2s 1;}
+		.n{left:300px; animation:aniText 2.5s 1;}
+		.t{left:400px;  animation:aniText 3s 1;}
+		.e{left:500px; animation:aniText 3.5s 1;}
+		.n2{left:600px; animation:aniText 4s 1;}
+		.d{left:700px; animation:aniText 4.5s 1;}
+
+		@keyframes aniText{
+			
+			0%{top:-50px;}
+			80%{top:50px; text-transform:uppercase; transform:rotatex(180deg);}
+			100%{top:0;}
+		}
+
+		/*
+			[animation 속도관련]
+
+			1) animation의 duration 부분 속도 컨트롤 가능
+			2) keyframes :	0~100 까지 설정가능!
+
+			0%
+			10%
+			100%
+
+			:: 중간 과정이 0에 가깝기 때문에 처음에 작동하는 속도가 빠름!
+
+			0%
+			80%
+			100%
+
+			:: 중간 과정이 100%에 가깝기 때문에 뒷부분의 속도가 빠름!
+		
+		*/
+  </style>
+ </head>
+ <body>
+	<ul>
+		<li class="f">f</li>
+		<li class="r">r</li>
+		<li class="o">o</li>
+		<li class="n">n</li>
+		<li class="t">t</li>
+		<li class="e">e</li>
+		<li class="n2">n</li>
+		<li class="d">d</li>
+	</ul>
+ </body>
+</html>

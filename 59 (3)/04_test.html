@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title>  </title>
+  <meta charset="utf-8"/> 
+  <style>
+	*{margin:0;padding:0;}
+
+	div{width:1000px;height:800px;overflow:hidden;margin:100px auto;background-image:url("img/background.jpg");background-repeat:no-repeat;
+	position:relative;}
+
+	p{width:220px;height:220px;position:absolute;top:50px;left:-200px;animation:myani 2s infinite alternate;}
+
+	@keyframes myani{
+			0%{width:220px;height:220px;}
+			50%{width:220px;height:220px; transform:translate(200px, 50px);}
+			100%{width:220px;height:220px;transform:translate(400px,200px); }
+		}
+
+
+  </style>
+ </head>
+
+ <body>
+	<div>
+		<p>
+			<img src="img/airball.png" alt="풍선"/>
+		</p>
+	</div>
+ </body>
+</html>
