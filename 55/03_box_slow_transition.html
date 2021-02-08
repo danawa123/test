@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title> box_slow </title>
+  <meta charset="utf-8"/> 
+  <style>
+	*{margin:0;padding:0;}
+	div{
+		width:250px;height:250px;background-color:#000;
+		margin:100px auto 0;position:relative;overflow:hidden;
+	}
+
+	div p{width:50px;height:50px;background-color:rgba(100,0,0,0.5);
+	text-align:center;;line-height:50px;color:#fff;position:absolute;left:250px;bottom:0;
+	transition:all 2.5s ease-in-out;}
+
+	/*
+		[style에서 감점이 가장 큰 부분 , float와 absolute]
+			중요)float 사용후,position을 사용하면 float는 무시당한다.
+				특히 좌표값이 적용된 순간 float는 해제 됨!
+
+				div p{float:left;position:absolute; left:0;top:0;}
+					:float는 더이상 정상 작동되지 않음!
+	*/
+
+	div:hover .no1{left:0;}
+
+	div .no2{transition-duration:2s;}
+	div:hover .no2{left:50px;}
+
+	div .no3{transition-duration:1.5s;}
+	div:hover .no3{left:100px;}
+
+	div .no4{transition-duration:1s;}
+	div:hover .no4{left:150px;}
+
+	div .no5{transition-duration:0.5s;}
+	div:hover .no5{left:200px;}
+
+  </style>
+ </head>
+
+ <body>
+	<div>
+		<p class="no1">1</p>
+		<p class="no2">2</p>
+		<p class="no3">3</p>
+		<p class="no4">4</p>
+		<p class="no5">5</p>
+	</div>
+	
+ </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title> movie_test </title>
+  <meta charset="utf-8"/> 
+  <style>
+	*{margin:0;padding:0;}
+	body{background-color:#ccc;}
+
+	#wrap{min-width:1025px;width:100%;height:1000px;background-image:linear-gradient(180deg,blue,black);}
+	#box{width:600px;height:600px;margin:0 auto;background-color:pink;position:relative;}
+
+	.top{width:300px;height:65px;line-height:60px;text-indent:10px;background-color:#343334;position:absolute;top:105px;left:50px;
+	transform:skewy(15deg);color:#fff;text-transform:uppercase;}
+
+	.video{width:300px;height:170px;background-color:#343334;position:absolute;top:165px;left:50px;
+	transform:skewy(15deg);}
+	.video video{width:100%;height:100%;}
+
+	.side{width:120px;height:170px;background-color:#ccc;position:absolute;top:170px;right:130px;
+	transform:skewy(-30deg);color:yellow;text-transform:uppercase;background-image:linear-gradient(left,#ccc,#343334);}
+
+  </style>
+ </head>
+
+ <body>
+	<div id="wrap">
+		<div id="box">
+			<p class="top">
+				apple_movie
+			</p>
+			<p class="video">
+				<video controls poster="img/02.jpg" autoplay muted loop>
+					<source src="apple.mp4" type="video/mp4"/>
+				</video>
+			</p>
+			<p class="side">
+				alpple cf
+			</p>
+		</div>
+	</div>
+	
+ </body>
+</html>
